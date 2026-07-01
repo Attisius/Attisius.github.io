@@ -322,13 +322,32 @@
 
         /* Layout fallback for mobile screens */
         @media (max-width: 960px) {
-            body { grid-template-columns: 1fr; }
-            .sidebar { position: relative; width: 100%; height: auto; padding: 3rem 1.5rem; }
-            .content-container { grid-column: 1; padding: 3rem 2rem; }
+            body { 
+                grid-template-columns: 1fr; /* Drops the 340px grid split on mobile */
+            }
+            .sidebar { 
+                position: relative; 
+                width: 100%; 
+                height: auto; 
+                padding: 3rem 1.5rem; 
+            }
+            .content-container { 
+                grid-column: 1; 
+                padding: 3rem 1.5rem; /* Reduces wide margins so content stays on screen */
+                width: 100%;
+                overflow-x: hidden;
+            }
             .social-icons { margin-bottom: 1.5rem; }
             .nav-menu { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
             .news-row { flex-direction: column; gap: 0.15rem; margin-bottom: 0.5rem; }
             .news-date { min-width: auto; }
+            
+            /* Prevents long code text strings from forcing horizontal viewport stretch */
+            .email-box {
+                white-space: normal;
+                word-break: break-all;
+                width: 100%;
+            }
         }
     </style>
 </head>
