@@ -794,13 +794,13 @@
         const toggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
 
-        // Check for explicitly saved preferences, otherwise DEFAULT strictly to light layout
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        } else {
+        // Check for saved preference; if none exists, strictly DEFAULT to dark layout
+        if (localStorage.getItem('theme') === 'light') {
             document.body.classList.remove('dark-mode');
             themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
 
         toggleBtn.addEventListener('click', () => {
