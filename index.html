@@ -47,6 +47,10 @@
             color: #f87171;
             background-color: rgba(248, 113, 113, 0.15);
         }
+        body.dark-mode .news-text strong {
+            color: #f87171; 
+            text-decoration: none; /* Keeps crisp contrast color with zero text underline */
+        }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
@@ -394,6 +398,7 @@
     </aside>
 
     <div class="content-container">
+        <!-- Section 1: About -->
         <section id="about">
             <h2>About</h2>
             <p>Hello!</p>
@@ -405,6 +410,7 @@
             <p style="margin-top: 0.5rem;">My primary research interests lie in the foundations of machine learning theory and data-driven sequential decision-making, as well as their intersections with game theory, private data analysis, information theory, signal processing, theoretical computer science and cognitive science.</p>
         </section>
 
+        <!-- Section 2: News -->
         <section id="news">
             <h2>Recent news and activities</h2>
             <div class="news-container">
@@ -447,6 +453,7 @@
             </div>
         </section>
 
+        <!-- Section 3: Publications -->
         <section id="publications">
             <h2>Publications</h2>
             <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem;">* Authors are listed in alphabetical order, except sometimes when a student author is listed first.</p>
@@ -734,6 +741,7 @@
             </div>
         </section>
 
+        <!-- Section 4: Teaching -->
         <section id="teaching">
             <h2>Teaching</h2>
             
@@ -745,19 +753,19 @@
             <div class="pub-entry">
                 <div class="pub-title">Computational Models, Ben-Gurion University</div>
                 <div class="pub-authors">Teaching Assistant: Spring 20, Spring 21, Spring 22, Spring 23</div>
-                <div class="pub-venue" style="color: var(--text-muted);">[Regular languages and finite automata, Grammars and Context-Free Languages, Turing Machines and Computability, Introduction to complexity]</div>
+                <div class="pub-venue" style="color: var(--text-muted); font-style: normal;">[Regular languages and finite automata, Grammars and Context-Free Languages, Turing Machines and Computability, Introduction to complexity]</div>
             </div>
             
             <div class="pub-entry">
                 <div class="pub-title">Design of Algorithms, Ben-Gurion University</div>
                 <div class="pub-authors">Teaching Assistant: Fall 21, Fall 22</div>
-                <div class="pub-venue" style="color: var(--text-muted);">[Reductions, Greedy algorithms, Dynamic programming, Shortest path, Maximum flow, Randomized algorithms, Linear programming, Approximation algorithms]</div>
+                <div class="pub-venue" style="color: var(--text-muted); font-style: normal;">[Reductions, Greedy algorithms, Dynamic programming, Shortest path, Maximum flow, Randomized algorithms, Linear programming, Approximation algorithms]</div>
             </div>
             
             <div class="pub-entry">
                 <div class="pub-title">Theory of Interactive Learning (graduate-level course), Ben-Gurion University</div>
                 <div class="pub-authors">Grader: Spring 22</div>
-                <div class="pub-venue" style="color: var(--text-muted);">[PAC learning, VC theory, Active learning]</div>
+                <div class="pub-venue" style="color: var(--text-muted); font-style: normal;">[PAC learning, VC theory, Active learning]</div>
             </div>
             
             <div class="pub-entry">
@@ -765,14 +773,13 @@
                 <div class="pub-authors">Teaching Assistant: Fall 20</div>
             </div>
             
-            <!-- Note: We leave the style="border:none" inline modification off this last entry 
-                 so the final row closes out with a dashed line just like your preprints! -->
             <div class="pub-entry">
                 <div class="pub-title">Discrete Math, Tel Aviv University</div>
                 <div class="pub-authors">Grader: Fall 16</div>
             </div>
         </section>
 
+        <!-- Section 5: Contact -->
         <section id="contact">
             <h2>Contact</h2>
             <div class="contact-row" style="margin-top:1.5rem;">
@@ -790,17 +797,18 @@
         </section>
     </div>
 
+    <!-- Layout Logic JavaScript Assembly -->
     <script>
         const toggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
 
-        // Check for saved preference; if none exists, strictly DEFAULT to dark layout
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.remove('dark-mode');
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-        } else {
+        // Theme management module (Fallback directly to clean Light setup)
+        if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
             themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
         }
 
         toggleBtn.addEventListener('click', () => {
