@@ -27,11 +27,11 @@
             --light-bg: #111416;
             --accent: #3b82f6;
         }
-        body.dark-mode .pub-title a {
-            color: #60a5fa;
-        }
         body.dark-mode .pub-title {
             color: #f1f5f9;
+        }
+        body.dark-mode .pub-title a {
+            color: #60a5fa;
         }
         body.dark-mode .pub-type {
             color: #f1f5f9;
@@ -234,21 +234,6 @@
             color: #0f172a;
         }
 
-        .pub-title a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .pub-title a:hover {
-            text-decoration: underline;
-        }
-
-        .pub-authors {
-            font-size: 0.95rem;
-            color: #334155;
-            margin-bottom: 0.2rem;
-        }
-
         .pub-meta-row {
             display: flex;
             flex-wrap: wrap;
@@ -386,9 +371,20 @@
         <div class="social-icons">
             <a href="https://scholar.google.com/citations?user=-L6uUy0AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
             
-            <a href="https://dblp.org/pid/228/6803.html" target="_blank" title="DBLP"><i class="fa-solid fa-database"></i></a>
+            <a href="https://dblp.org/pid/228/6803.html" target="_blank" title="DBLP" style="display: inline-flex; align-items: center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="8" height="8" rx="1.5"/>
+                    <rect x="14" y="3" width="8" height="8" rx="1.5"/>
+                    <rect x="2" y="14" width="8" height="8" rx="1.5"/>
+                    <path d="M14 14h8M18 14v8"/>
+                </svg>
+            </a>
             
-            <a href="https://arxiv.org/search/?query=idan+attias&searchtype=all&abstracts=show&order=-announced_date_first&size=50" target="_blank" title="arXiv"><i class="fa-solid fa-file-lines"></i></a>
+            <a href="https://arxiv.org/search/?query=idan+attias&searchtype=all&abstracts=show&order=-announced_date_first&size=50" target="_blank" title="arXiv" style="display: inline-flex; align-items: center;">
+                <svg width="22" height="22" viewBox="0 0 256 244" fill="currentColor">
+                    <path d="M117.7 207c4.6 15 10 26.5 10.3 26.5.3 0 10.8-13.8 23.3-30.8l22.7-30.8-31.5-2.2c-17.3-1.2-32.3-1.9-33.3-1.6-1 .4-6.2 13.4-11.5 28.9zm-46-133.5c0 .3 18.8 28.8 41.8 63.3L155.3 200l11.5-15c6.3-8.3 24.3-32.3 40-53.3 15.7-21 28.5-38.5 28.5-38.8 0-.4-12.3-.5-27.3-.3l-27.3.5 12.3 20c6.7 11 12.2 20.3 12.2 20.6 0 .3-10.4 15-23.2 32.7l-23.2 32.2-22.5-33.7c-12.3-18.5-23-34.3-23.7-35.1-.9-.7-19-28.9-40.4-62.6L14 3.5l3.8 5.3c2 3 19 29.4 37.8 58.7 18.7 29.3 34.3 53.5 34.6 53.8.3.3 9.4-12.8 20.3-29.2 10.8-16.3 20-30.2 20.3-30.8.3-.3-5.3-.5-12.5-.5H106l20.5-28.5c11.3-15.7 20.8-28.5 21.2-28.5.3 0-5.4 8.6-12.7 19-7.3 10.5-13.3 19.3-13.3 19.5 0 .4 11.2.6 24.8.5l24.8-.3-21.5 32c-11.8 17.6-21.8 32.3-22.2 32.5-.3.3-11.2-16-24-36.2L101 44.5l-15.2.3c-8.4.1-15.2.3-15.2.5l1.1 2.2zm115.5 5.7c-5.5 8.3-10.1 15.5-10.1 16 0 .5 7 11.3 15.5 24l15.5 23.2 11.8-16c6.5-8.8 12-16.5 12.2-17 .3-.4-6.8-11.5-15.8-24.5l-16.3-23.7-12.8 18z"/>
+                </svg>
+            </a>
             
             <a href="https://twitter.com/idanattias" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
             
@@ -465,31 +461,31 @@
             <div class="pub-type">Preprints</div>
             
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2605.07155" target="_blank">Regret–Oracle Complexity Tradeoffs in Agnostic Online Learning</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2605.07155" target="_blank">Regret–Oracle Complexity Tradeoffs in Agnostic Online Learning</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Arvind Ramaswami</div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/2605.07155" target="_blank">Arxiv</a></div>
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2606.11711" target="_blank">Capacity-Constrained Online Convex Optimization with Delayed Feedback</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2606.11711" target="_blank">Capacity-Constrained Online Convex Optimization with Delayed Feedback</a></div>
                 <div class="pub-authors">Alexander Ryabchenko, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/2606.11711" target="_blank">Arxiv</a></div>
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.abs/2602.02634" target="_blank">A Reduction from Delayed to Immediate Feedback for Online Convex Optimization with Improved Guarantees</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2602.02634" target="_blank">A Reduction from Delayed to Immediate Feedback for Online Convex Optimization with Improved Guarantees</a></div>
                 <div class="pub-authors">Alexander Ryabchenko, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/2602.02634" target="_blank">Arxiv</a></div>
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2505.06146" target="_blank">Learning-Augmented Algorithms for Boolean Satisfiability</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2505.06146" target="_blank">Learning-Augmented Algorithms for Boolean Satisfiability</a></div>
                 <div class="pub-authors">Idan Attias, Xing Gao, Lev Reyzin</div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/2505.06146" target="_blank">Arxiv</a></div>
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2501.10884" target="_blank">Fixed Point Computation: Beating Brute Force with Smoothed Analysis</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2501.10884" target="_blank">Fixed Point Computation: Beating Brute Force with Smoothed Analysis</a></div>
                 <div class="pub-authors">Idan Attias, Yuval Dagan, Constantinos Daskalakis, Rui Yao, Manolis Zampetakis</div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/2501.10884" target="_blank">Arxiv</a></div>
             </div>
@@ -497,7 +493,7 @@
             <div class="pub-type">Publications (conferences and journals)</div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2602.08907" target="_blank">Positive Distribution Shift as a Framework for Understanding Tractable Learning</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2602.08907" target="_blank">Positive Distribution Shift as a Framework for Understanding Tractable Learning</a></div>
                 <div class="pub-authors">Marko Medvedev, Idan Attias, Elisabetta Cornacchia, Theodor Misiakiewicz, Gal Vardi, Nathan Srebro</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">43rd International Conference on Machine Learning (ICML 2026)</div>
@@ -510,7 +506,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2510.04834" target="_blank">On the Hardness of Learning Regular Expressions</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2510.04834" target="_blank">On the Hardness of Learning Regular Expressions</a></div>
                 <div class="pub-authors">Idan Attias, Lev Reyzin, Nathan Srebro, Gal Vardi</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">37th International Conference on Algorithmic Learning Theory (ALT 2026)</div>
@@ -523,7 +519,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2506.00135" target="_blank">Tradeoffs between Mistakes and ERM Oracle Calls in Online and Transductive Online Learning</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2506.00135" target="_blank">Tradeoffs between Mistakes and ERM Oracle Calls in Online and Transductive Online Learning</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Arvind Ramaswami</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">39th Annual Conference on Neural Information Processing Systems (NeurIPS 2025)</div>
@@ -533,7 +529,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2502.17384" target="_blank">On Traceability in ℓp Stochastic Convex Optimization</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2502.17384" target="_blank">On Traceability in ℓp Stochastic Convex Optimization</a></div>
                 <div class="pub-authors">Sasha Voitovych, Mahdi Haghifam, Idan Attias, Gintare Karolina Dziugaite, Roi Livni, Daniel M. Roy</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">39th Annual Conference on Neural Information Processing Systems (NeurIPS 2025)</div>
@@ -543,7 +539,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2503.19856" target="_blank">Capacity-Constrained Online Learning with Delays: Scheduling Frameworks and Regret Trade-offs</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2503.19856" target="_blank">Capacity-Constrained Online Learning with Delays: Scheduling Frameworks and Regret Trade-offs</a></div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">38th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v291/ryabchenko25a.html" target="_blank">COLT 2025</a>)</div>
                 </div>
@@ -556,7 +552,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2503.03184" target="_blank">PAC Learning with Improvements</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2503.03184" target="_blank">PAC Learning with Improvements</a></div>
                 <div class="pub-authors">Idan Attias, Avrim Blum, Keziah Naggita, Donya Saless, Dravyansh Sharma, Matthew Walter</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">42nd International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v267/attias25a.html" target="_blank">ICML 2025</a>)</div>
@@ -568,7 +564,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2410.13012" target="_blank">Sample Compression Scheme Reductions</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2410.13012" target="_blank">Sample Compression Scheme Reductions</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Arvind Ramaswami</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">36th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v272/attias25a.html" target="_blank">ALT 2025</a>)</div>
@@ -580,7 +576,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2410.03849" target="_blank">Sequential Probability Assignment with Contexts: Minimax Regret, Contextual Shtarkov Sums, and Contextual Normalized Maximum Likelihood</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2410.03849" target="_blank">Sequential Probability Assignment with Contexts: Minimax Regret, Contextual Shtarkov Sums, and Contextual Normalized Maximum Likelihood</a></div>
                 <div class="pub-authors">Ziyi Liu, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">38th Annual Conference on Neural Information Processing Systems (<a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/19a94fdf9e1c5b387830e4c4fef6972a-Abstract-Conference.html" target="_blank">Neurips 2024</a>)</div>
@@ -589,7 +585,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2402.09327" target="_blank">Information Complexity of Stochastic Convex Optimization: Applications to Generalization and Memorization</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2402.09327" target="_blank">Information Complexity of Stochastic Convex Optimization: Applications to Generalization and Memorization</a></div>
                 <div class="pub-authors">Idan Attias, Gintare Karolina Dziugaite, Mahdi Haghifam, Roi Livni, Daniel M. Roy</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/attias24a.html" target="_blank">ICML 2024</a>)</div>
@@ -604,7 +600,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/1810.01864" target="_blank">Agnostic Sample Compression Schemes for Regression</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.01864" target="_blank">Agnostic Sample Compression Schemes for Regression</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Aryeh Kontorovich, Menachem Sadigurschi</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/attias24b.html" target="_blank">ICML 2024</a>)</div>
@@ -614,7 +610,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2407.00950" target="_blank">Causal Bandits: The Pareto Optimal Frontier of Adaptivity, a Reduction to Linear Bandits, and Limitations around Unknown Marginal</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2407.00950" target="_blank">Causal Bandits: The Pareto Optimal Frontier of Adaptivity, a Reduction to Linear Bandits, and Limitations around Unknown Marginal</a></div>
                 <div class="pub-authors">Ziyi Liu, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/liu24b.html" target="_blank">ICML 2024</a>)</div>
@@ -634,7 +630,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2110.04763" target="_blank">Fat-shattering dimension of k-fold Aggregations</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2110.04763" target="_blank">Fat-shattering dimension of k-fold Aggregations</a></div>
                 <div class="pub-authors">Idan Attias, Aryeh Kontorovich</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">Journal of Machine Learning Research, Vol. 25 (<a href="https://jmlr.org/papers/v25/21-1193.html" target="_blank">JMLR 2024</a>)</div>
@@ -643,7 +639,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2307.03848" target="_blank">Optimal Learners for Realizable Regression: PAC Learning and Online Learning</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2307.03848" target="_blank">Optimal Learners for Realizable Regression: PAC Learning and Online Learning</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Alkis Kalavasis, Amin Karbasi, Grigoris Velegkas</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">37th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2023/hash/8c22e5e918198702765ecff4b20d0a90-Abstract-Conference.html" target="_blank">NeurIPS 2023</a>)</div>
@@ -656,7 +652,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2307.01689" target="_blank">Online Learning and Solving Infinite Games with an ERM Oracle</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2307.01689" target="_blank">Online Learning and Solving Infinite Games with an ERM Oracle</a></div>
                 <div class="pub-authors">Angelos Assos, Idan Attias, Yuval Dagan, Constantinos Daskalakis, Maxwell Fishelson</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">36th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v195/assos23a.html" target="_blank">COLT 2023</a>)</div>
@@ -668,7 +664,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2206.12977" target="_blank">Adversarially Robust PAC Learnability of Real-Valued Functions</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2206.12977" target="_blank">Adversarially Robust PAC Learnability of Real-Valued Functions</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">40th International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v202/attias23a.html" target="_blank">ICML 2023</a>)</div>
@@ -677,7 +673,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2107.14527" target="_blank">Learning Revenue Maximization using Posted Prices for Stochastic Strategic Patient Buyers</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank">Learning Revenue Maximization using Posted Prices for Stochastic Strategic Patient Buyers</a></div>
                 <div class="pub-authors">Eitan-Hai Mashiah, Idan Attias, Yishay Mansour</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">37th Conference on Artificial Intelligence (<a href="https://ojs.aaai.org/index.php/AAAI/article/view/26091" target="_blank">AAAI 2023</a>)</div>
@@ -690,7 +686,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2107.14527" target="_blank">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
                 <div class="pub-authors">Idan Attias, Edith Cohen, Moshe Shechner, Uri Stemmer</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">Algorithmica 2024 / 14th Innovations in Theoretical Computer Science (<a href="https://drops.dagstuhl.de/opus/frontdoor.php?source_opus=17511" target="_blank">ITCS 2023</a>)</div>
@@ -703,7 +699,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2202.05420" target="_blank">A Characterization of Semi-Supervised Adversarially-Robust PAC Learnability</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2202.05420" target="_blank">A Characterization of Semi-Supervised Adversarially-Robust PAC Learnability</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Yishay Mansour</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">36th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2022/hash/95a704bd2fdf8ef8242b4adcc7ce3c93-Abstract-Conference.html" target="_blank">NeurIPS 2022</a>)</div>
@@ -715,7 +711,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2104.00322" target="_blank">Domain Invariant Adversarial Learning</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2104.00322" target="_blank">Domain Invariant Adversarial Learning</a></div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">Transactions on Machine Learning Research (<a href="https://openreview.net/forum?id=bUAdXW8wN6" target="_blank">TMLR 2022</a>)</div>
                 </div>
@@ -723,7 +719,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/2002.10286" target="_blank">Prediction with Corrupted Expert Advice</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2002.10286" target="_blank">Prediction with Corrupted Expert Advice</a></div>
                 <div class="pub-authors">Idan Amir, Idan Attias, Tomer Koren, Roi Livni, Yishay Mansour</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">34th Annual Conference on Neural Information Processing Systems (<a href="https://proceedings.neurips.cc/paper/2020/hash/a512294422de868f8474d22344636f16-Abstract.html" target="_blank">NeurIPS 2020</a>)</div>
@@ -736,7 +732,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
+                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.02180" target="_blank">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
                 <div class="pub-authors">Idan Attias, Aryeh Kontorovich, Yishay Mansour</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">Journal of Machine Learning Research, Vol. 23 (<a href="https://www.jmlr.org/papers/v23/20-1353.html" target="_blank">JMLR 2022</a>)<br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: 30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</span></div>
