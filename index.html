@@ -16,6 +16,7 @@
             --accent: #2563eb;
             --border: #e2e8f0;
             --light-bg: #f8fafc;
+            --sticky-offset: 0px;
         }
 
         /* Dark Mode Color Overrides */
@@ -168,6 +169,63 @@
             padding-bottom: 0.5rem;
         }
 
+        /* Sticky Filter Navigation Bar & Pill Buttons */
+        .sticky-pub-nav {
+            position: sticky;
+            top: var(--sticky-offset);
+            background-color: var(--content-bg);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            z-index: 5;
+            display: flex;
+            gap: 0.75rem;
+            transition: background-color 0.3s;
+        }
+
+        .pub-filter-link {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background-color: var(--light-bg);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .pub-filter-link:hover {
+            color: #ffffff;
+            background-color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        body.dark-mode .pub-filter-link {
+            background-color: #22252a;
+            border-color: #334155;
+            color: #94a3b8;
+        }
+
+        body.dark-mode .pub-filter-link:hover {
+            color: #1a1d20;
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .pub-type {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 3rem 0 1rem 0;
+            color: #1e293b;
+            border-left: 4px solid var(--accent);
+            padding-left: 0.75rem;
+            scroll-margin-top: 5rem; /* Offsets scroll destination so it aligns with the sticky menu */
+        }
+
         p {
             line-height: 1.75;
             margin-bottom: 1.25rem;
@@ -216,16 +274,6 @@
 
         .news-text a:hover {
             text-decoration: underline;
-        }
-
-        /* Publication Taxonomy & Metadata Styling */
-        .pub-type {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin: 2rem 0 1rem 0;
-            color: #1e293b;
-            border-left: 4px solid var(--accent);
-            padding-left: 0.75rem;
         }
 
         .pub-entry {
@@ -315,6 +363,7 @@
 
         /* Layout fallback for mobile screens */
         @media (max-width: 960px) {
+            :root { --sticky-offset: -1px; } /* Ensures clean pinning under high density viewports */
             body { 
                 grid-template-columns: 1fr; /* Drops the 340px grid split on mobile */
             }
@@ -456,9 +505,17 @@
         <!-- Section 3: Publications -->
         <section id="publications">
             <h2>Publications</h2>
+            
+            <!-- Sticky Sub-Navigation row handles filter queries cleanly -->
+            <nav class="sticky-pub-nav">
+                <a href="#preprints" class="pub-filter-link">Preprints</a>
+                <a href="#conferences" class="pub-filter-link">Conferences</a>
+                <a href="#journals" class="pub-filter-link">Journals</a>
+            </nav>
+
             <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem;">* Authors are listed in alphabetical order, except sometimes when a student author is listed first.</p>
 
-            <div class="pub-type">Preprints</div>
+            <div class="pub-type" id="preprints">Preprints</div>
             
             <div class="pub-entry">
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2605.07155" target="_blank">Regret–Oracle Complexity Tradeoffs in Agnostic Online Learning</a></div>
@@ -490,7 +547,7 @@
                 <div class="pub-links"><a href="https://arxiv.org/abs/2501.10884" target="_blank">Arxiv</a></div>
             </div>
 
-            <div class="pub-type">Publications (conferences and journals)</div>
+            <div class="pub-type" id="conferences">Conferences</div>
 
             <div class="pub-entry">
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2602.08907" target="_blank">Positive Distribution Shift as a Framework for Understanding Tractable Learning</a></div>
@@ -630,15 +687,6 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2110.04763" target="_blank">Fat-shattering dimension of k-fold Aggregations</a></div>
-                <div class="pub-authors">Idan Attias, Aryeh Kontorovich</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 25 (<a href="https://jmlr.org/papers/v25/21-1193.html" target="_blank">JMLR 2024</a>)</div>
-                </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2110.04763" target="_blank">Arxiv</a></div>
-            </div>
-
-            <div class="pub-entry">
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2307.03848" target="_blank">Optimal Learners for Realizable Regression: PAC Learning and Online Learning</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Alkis Kalavasis, Amin Karbasi, Grigoris Velegkas</div>
                 <div class="pub-meta-row">
@@ -689,7 +737,7 @@
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
                 <div class="pub-authors">Idan Attias, Edith Cohen, Moshe Shechner, Uri Stemmer</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">Algorithmica 2024 / 14th Innovations in Theoretical Computer Science (<a href="https://drops.dagstuhl.de/opus/frontdoor.php?source_opus=17511" target="_blank">ITCS 2023</a>)</div>
+                    <div class="pub-venue">30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</div>
                 </div>
                 <div class="pub-links">
                     <a href="https://arxiv.org/abs/2107.14527" target="_blank">Arxiv</a> • 
@@ -711,14 +759,6 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2104.00322" target="_blank">Domain Invariant Adversarial Learning</a></div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">Transactions on Machine Learning Research (<a href="https://openreview.net/forum?id=bUAdXW8wN6" target="_blank">TMLR 2022</a>)</div>
-                </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2104.00322" target="_blank">Arxiv</a></div>
-            </div>
-
-            <div class="pub-entry">
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2002.10286" target="_blank">Prediction with Corrupted Expert Advice</a></div>
                 <div class="pub-authors">Idan Amir, Idan Attias, Tomer Koren, Roi Livni, Yishay Mansour</div>
                 <div class="pub-meta-row">
@@ -735,9 +775,50 @@
                 <div class="pub-title"><a href="https://arxiv.org/pdf/1810.02180" target="_blank">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
                 <div class="pub-authors">Idan Attias, Aryeh Kontorovich, Yishay Mansour</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 23 (<a href="https://www.jmlr.org/papers/v23/20-1353.html" target="_blank">JMLR 2022</a>)<br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: 30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</span></div>
+                    <div class="pub-venue">30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</div>
                 </div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Arxiv</a></div>
+            </div>
+
+            <div class="pub-type" id="journals">Journals</div>
+
+            <div class="pub-entry">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2110.04763" target="_blank">Fat-shattering dimension of k-fold Aggregations</a></div>
+                <div class="pub-authors">Idan Attias, Aryeh Kontorovich</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 25 (<a href="https://jmlr.org/papers/v25/21-1193.html" target="_blank">JMLR 2024</a>)</div>
+                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2110.04763" target="_blank">Arxiv</a></div>
+            </div>
+
+            <div class="pub-entry">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
+                <div class="pub-authors">Idan Attias, Edith Cohen, Moshe Shechner, Uri Stemmer</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue"><a href="https://link.springer.com/article/10.1007/s00453-024-01259-8" target="_blank">Algorithmica 2024</a><br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: ITCS 2023</span></div>
+                </div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2107.14527" target="_blank">Arxiv</a> • 
+                    <a href="https://drive.google.com/file/d/1sk-VIIhrleylk52hzsrFUWkIO4BuSSFo/view?usp=drive_link" target="_blank">Slides</a> • 
+                    <a href="https://youtu.be/l8botDXqD_M?si=DLLbkKRX3YFhHeoj" target="_blank">Video (Moshe)</a>
+                </div>
+            </div>
+
+            <div class="pub-entry">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.02180" target="_blank">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
+                <div class="pub-authors">Idan Attias, Aryeh Kontorovich, Yishay Mansour</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 23 (<a href="https://www.jmlr.org/papers/v23/20-1353.html" target="_blank">JMLR 2022</a>)<br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: ALT 2019</span></div>
+                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Arxiv</a></div>
+            </div>
+
+            <div class="pub-entry">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2104.00322" target="_blank">Domain Invariant Adversarial Learning</a></div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">Transactions on Machine Learning Research (<a href="https://openreview.net/forum?id=bUAdXW8wN6" target="_blank">TMLR 2022</a>)</div>
+                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2104.00322" target="_blank">Arxiv</a></div>
             </div>
         </section>
 
