@@ -384,6 +384,21 @@
             .news-row { flex-direction: column; gap: 0.15rem; margin-bottom: 0.5rem; }
             .news-date { min-width: auto; }
             
+            /* FORCE CONTAINER TO A 3-COLUMN EQUAL GRID ROW WITH NO OVERFLOW POSSIBLE */
+            .sticky-pub-nav {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 0.25rem !important;
+            }
+            
+            /* FORCE BUTTON PILLS TO FLATTEN HORIZONTALLY AND RESCALE TEXT WITH ZERO SIDE PADDING OVERRIDES */
+            .pub-filter-link {
+                text-align: center !important;
+                white-space: nowrap !important;
+                font-size: 0.7rem !important;  /* Compact scale fixes line limits on small viewports */
+                padding: 0.4rem 0 !important;   /* Hard-replaces global horizontal padding to 0 */
+            }
+            
             /* Prevents long code text strings from forcing horizontal viewport stretch */
             .email-box {
                 white-space: normal;
@@ -436,6 +451,11 @@
             
             <a href="https://www.linkedin.com/in/idan-attias-79114497/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         </div>
+            
+            <a href="https://twitter.com/idanattias" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            
+            <a href="https://www.linkedin.com/in/idan-attias-79114497/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
         
         <ul class="nav-menu">
             <li><a href="#about">About</a></li>
@@ -451,8 +471,8 @@
         <section id="about">
             <h2>About</h2>
             <p>Hello!</p>
-            <p>I am a postdoctoral researcher at the Institute for Data, Econometrics, Algorithms, and Learning (<a href="https://www.ideal-institute.org/" target="_blank" class="inline-link">IDEAL</a>) in Chicago, where I am hosted by <a href="https://www.levreyzin.com/" target="_blank" class="inline-link">Lev Reyzin</a> (University of Illinois Chicago), <a href="https://home.ttic.edu/~avrim/" target="_blank" class="inline-link">Avrim Blum</a>, and <a href="https://nati.ttic.edu/" target="_blank" class="inline-link">Nati Srebro</a> (Toyota Technological Institute at Chicago).
-            I earned my PhD from the Computer Science Department at Ben-Gurion University, where I had the privilege of being advised by <a href="https://www.cs.bgu.ac.il/~karyeh/" target="_blank" class="inline-link">Aryeh Kontorovich</a> (Ben-Gurion University) and <a href="https://www.tau.ac.il/~mansour/" target="_blank" class="inline-link">Yishay Mansour</a> (Tel Aviv University and Google Research). Prior to that, I completed my Bachelor's degree in Mathematics and Computer Science at Tel Aviv University.</p>
+            <p>I am a postdoctoral researcher at the Institute for Data, Econometrics, Algorithms, and Learning (<a href="https://www.ideal-institute.org/" target="_blank" class="inline-link">IDEAL</a>) in Chicago, where I am hosted by <a href="https://www.levreyzin.com/" target="_blank" class="inline-link">Lev Reyzin</a> (University of Illinois Chicago), <a href="https://home.ttic.edu/~avrim/" target="_blank" class="inline-link">Avrim Blum</a>, and <a href="https://nati.ttic.edu/" target="_blank" class="inline-link">Nati Srebro</a> (Toyota Technological Institute at Chicago).</p>
+            <p>I earned my PhD from the Computer Science Department at Ben-Gurion University, where I had the privilege of being advised by <a href="https://www.cs.bgu.ac.il/~karyeh/" target="_blank" class="inline-link">Aryeh Kontorovich</a> (Ben-Gurion University) and <a href="https://www.tau.ac.il/~mansour/" target="_blank" class="inline-link">Yishay Mansour</a> (Tel Aviv University and Google Research). Prior to that, I completed my Bachelor's degree in Mathematics and Computer Science at Tel Aviv University.</p>
             <p style="color:#C60808; font-weight:bold;">I’ll be joining the <a href="https://www.cs.technion.ac.il/" target="_blank" style="color:#C60808; text-decoration:underline;">Computer Science Department at the Technion</a> as a faculty member in 2027.<br>Feel free to reach out to chat about research and opportunities.</p>
             
             <h3 style="font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-top: 2rem; color: var(--text-main);">Research interests</h3>
@@ -566,13 +586,9 @@
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2510.04834" target="_blank">On the Hardness of Learning Regular Expressions</a></div>
                 <div class="pub-authors">Idan Attias, Lev Reyzin, Nathan Srebro, Gal Vardi</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">37th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v313/attias26a.html" target="_blank">ALT 2026</a>)</div>
-                    <span class="pub-award">Elegant Paper Award</span>
+                    <div class="pub-venue">30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</div>
                 </div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2510.04834" target="_blank">Arxiv</a> • 
-                    <a href="https://x.com/IdanAttias/status/1975931242261659812" target="_blank">Twitter summary</a>
-                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Arxiv</a></div>
             </div>
 
             <div class="pub-entry">
