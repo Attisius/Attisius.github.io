@@ -19,6 +19,19 @@
             --sticky-offset: 0px;
         }
 
+        /* Announcement Highlight - Light Mode (Dark Bold, Link in blue with no underline) */
+        .highlight-announcement {
+            color: #0f172a; 
+            font-weight: 700;
+        }
+        .highlight-announcement a {
+            color: #2563eb;
+            text-decoration: none; 
+        }
+        .highlight-announcement a:hover {
+            text-decoration: underline; 
+        }
+
         /* Dark Mode Color Overrides */
         body.dark-mode {
             --content-bg: #1a1d20;
@@ -26,7 +39,7 @@
             --text-muted: #94a3b8;
             --border: #334155;
             --light-bg: #111416;
-            --accent: #58a6ff; /* A crisp, bright academic blue optimized for dark backgrounds */
+            --accent: #58a6ff; 
         }
         body.dark-mode .pub-title a {
             color: var(--accent);
@@ -40,7 +53,6 @@
         body.dark-mode a.inline-link {
             color: var(--accent);
         }
-        /* FIX: Forces the conference text links inside the italicized venue line to pop */
         body.dark-mode .pub-venue a {
             color: #60a5fa; 
         }
@@ -50,7 +62,19 @@
         }
         body.dark-mode .news-text strong {
             color: #f87171; 
-            text-decoration: none; /* Keeps crisp contrast color with zero text underline */
+            text-decoration: none; 
+        }
+        /* Announcement Block Override - Dark Mode */
+        body.dark-mode .highlight-announcement {
+            color: #f87171;
+            font-weight: 700;
+        }
+        body.dark-mode .highlight-announcement a {
+            color: #f87171; /* Matches the rosy red exactly */
+            text-decoration: underline; /* Provides clear visibility without changing colors */
+        }
+        body.dark-mode .highlight-announcement a:hover {
+            text-decoration-color: #f87171; /* Sharpens line on hover */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -104,7 +128,6 @@
             line-height: 1.5;
         }
 
-        /* Academic Link Badges styling */
         .social-icons {
             display: flex;
             gap: 1.25rem;
@@ -169,7 +192,6 @@
             padding-bottom: 0.5rem;
         }
 
-        /* Sticky Filter Navigation Bar & Pill Buttons */
         .sticky-pub-nav {
             position: sticky;
             top: var(--sticky-offset);
@@ -223,7 +245,7 @@
             color: #1e293b;
             border-left: 4px solid var(--accent);
             padding-left: 0.75rem;
-            scroll-margin-top: 5rem; /* Offsets scroll destination so it aligns with the sticky menu */
+            scroll-margin-top: 5rem;
         }
 
         p {
@@ -241,7 +263,6 @@
             text-decoration: underline;
         }
 
-        /* News Timeline Grid */
         .news-container {
             display: flex;
             flex-direction: column;
@@ -289,6 +310,14 @@
             margin-bottom: 0.25rem;
             color: #0f172a;
         }
+        /* ADD THIS RULE: Removes the default underline from the link */
+        .pub-title a {
+            text-decoration: none;
+        }
+        /* OPTIONAL: Adds the underline back purely when a user hovers over the title */
+        .pub-title a:hover {
+            text-decoration: underline;
+        }
 
         .pub-meta-row {
             display: flex;
@@ -334,7 +363,6 @@
             text-decoration: underline;
         }
 
-        /* Monospace Contact Layout */
         .email-box {
             background-color: #22252a;
             color: #38bdf8;
@@ -363,9 +391,7 @@
 
         /* Layout fallback for mobile screens */
         @media (max-width: 960px) {
-            
-            /* FORCE DARK MODE BY DEFAULT ON MOBILE VIEWPORTS */
-            :root {
+            body.dark-mode {
                 --content-bg: #1a1d20;
                 --text-main: #f1f5f9;
                 --text-muted: #94a3b8;
@@ -373,24 +399,10 @@
                 --light-bg: #111416;
                 --accent: #58a6ff;
             }
-            .pub-title a { color: var(--accent); }
-            .pub-title { color: #f1f5f9; }
-            .pub-type { color: #f1f5f9; }
-            a.inline-link { color: var(--accent); }
-            .pub-venue a { color: #60a5fa; }
-            .pub-award {
-                color: #f87171;
-                background-color: rgba(248, 113, 113, 0.15);
-            }
-            .news-text strong {
-                color: #f87171;
-                text-decoration: none;
-            }
-            /* END MOBILE DARK MODE DEFAULTS */
 
-            :root { --sticky-offset: -1px; } /* Ensures clean pinning under high density viewports */
+            :root { --sticky-offset: -1px; } 
             body { 
-                grid-template-columns: 1fr; /* Drops the 340px grid split on mobile */
+                grid-template-columns: 1fr; 
             }
             .sidebar { 
                 position: relative; 
@@ -400,7 +412,7 @@
             }
             .content-container { 
                 grid-column: 1; 
-                padding: 3rem 1.5rem; /* Reduces wide margins so content stays on screen */
+                padding: 3rem 1.5rem; 
                 width: 100%;
                 overflow-x: hidden;
             }
@@ -409,22 +421,19 @@
             .news-row { flex-direction: column; gap: 0.15rem; margin-bottom: 0.5rem; }
             .news-date { min-width: auto; }
             
-            /* FORCE CONTAINER TO A 3-COLUMN EQUAL GRID ROW WITH NO OVERFLOW POSSIBLE */
             .sticky-pub-nav {
                 display: grid !important;
                 grid-template-columns: repeat(3, 1fr) !important;
                 gap: 0.35rem !important;
             }
             
-            /* FORCE BUTTON PILLS TO FLATTEN HORIZONTALLY AND RESCALE TEXT WITH ZERO SIDE PADDING OVERRIDES */
             .pub-filter-link {
                 text-align: center !important;
                 white-space: nowrap !important;
-                font-size: 0.72rem !important; /* Compact scale fixes line limits on small viewports */
-                padding: 0.4rem 0 !important;   /* Hard-replaces global horizontal padding to 0 */
+                font-size: 0.72rem !important; 
+                padding: 0.4rem 0 !important;   
             }
             
-            /* Prevents long code text strings from forcing horizontal viewport stretch */
             .email-box {
                 white-space: normal;
                 word-break: break-all;
@@ -433,7 +442,7 @@
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
 
     <button id="theme-toggle" aria-label="Toggle Dark Mode" style="
         position: fixed;
@@ -454,7 +463,7 @@
         z-index: 9999;
         transition: transform 0.2s, background-color 0.2s;
     ">
-        <i class="fa-solid fa-moon" id="theme-icon"></i>
+        <i class="fa-solid fa-sun" id="theme-icon"></i>
     </button>
 
     <aside class="sidebar">
@@ -467,13 +476,9 @@
         
         <div class="social-icons">
             <a href="https://scholar.google.com/citations?user=-L6uUy0AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
-            
             <a href="https://dblp.org/pid/228/6803.html" target="_blank" title="DBLP"><i class="fa-solid fa-database"></i></a>
-            
             <a href="https://arxiv.org/search/?query=idan+attias&searchtype=all&abstracts=show&order=-announced_date_first&size=50" target="_blank" title="arXiv"><i class="fa-solid fa-file-lines"></i></a>
-            
             <a href="https://twitter.com/idanattias" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-            
             <a href="https://www.linkedin.com/in/idan-attias-79114497/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         </div>
         
@@ -487,18 +492,17 @@
     </aside>
 
     <div class="content-container">
-        <!-- Section 1: About -->
         <section id="about">
             <h2>About</h2>
             <p>Hello!</p>
             <p>I am a postdoctoral researcher at the Institute for Data, Econometrics, Algorithms, and Learning (<a href="https://www.ideal-institute.org/" target="_blank" class="inline-link">IDEAL</a>) in Chicago, where I am hosted by <a href="https://www.levreyzin.com/" target="_blank" class="inline-link">Lev Reyzin</a> (University of Illinois Chicago), <a href="https://home.ttic.edu/~avrim/" target="_blank" class="inline-link">Avrim Blum</a> and <a href="https://nati.ttic.edu/" target="_blank" class="inline-link">Nati Srebro</a> (Toyota Technological Institute at Chicago). I earned my PhD from the Computer Science Department at Ben-Gurion University, where I had the privilege of being advised by <a href="https://www.cs.bgu.ac.il/~karyeh/" target="_blank" class="inline-link">Aryeh Kontorovich</a> (Ben-Gurion University) and <a href="https://www.tau.ac.il/~mansour/" target="_blank" class="inline-link">Yishay Mansour</a> (Tel Aviv University and Google Research). Prior to that, I completed my Bachelor's degree in Mathematics and Computer Science at Tel Aviv University.</p>
-            <p style="color:#C60808; font-weight:bold;">I’ll be joining the <a href="https://www.cs.technion.ac.il/" target="_blank" style="color:#C60808; text-decoration:underline;">Computer Science Department at the Technion</a> as a faculty member in 2027.<br>Feel free to reach out if you'd like to discuss research or collaboration opportunities.</p>
+            
+            <p class="highlight-announcement">I’ll be joining the <a href="https://www.cs.technion.ac.il/" target="_blank">Computer Science Department at the Technion</a> as a faculty member in 2027.<br>Feel free to reach out if you'd like to discuss research or collaboration opportunities.</p>
             
             <h3 style="font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-top: 2rem; color: var(--text-main);">Research interests</h3>
             <p style="margin-top: 0.5rem;">My primary research interests lie in the foundations of machine learning theory and data-driven sequential decision-making, as well as their intersections with game theory, private data analysis, information theory, signal processing, theoretical computer science and cognitive science.</p>
         </section>
 
-        <!-- Section 2: News -->
         <section id="news">
             <h2>Recent news and activities</h2>
             <div class="news-container">
@@ -541,11 +545,9 @@
             </div>
         </section>
 
-        <!-- Section 3: Publications -->
         <section id="publications">
             <h2>Publications</h2>
             
-            <!-- Sticky Sub-Navigation row handles filter queries cleanly -->
             <nav class="sticky-pub-nav">
                 <a href="#preprints" class="pub-filter-link">Preprints</a>
                 <a href="#conferences" class="pub-filter-link">Conferences</a>
@@ -710,7 +712,7 @@
                 <div class="pub-links">
                     <a href="https://arxiv.org/abs/2407.00950" target="_blank">Arxiv</a> • 
                     <a href="https://drive.google.com/file/d/1gQeQzGo0lkmvtxvsA1XXXZh5aZQ4-G8n/view?usp=sharing" target="_blank">Slides</a> • 
-                    <a href="https://youtu.be/LZ_PlFskqIQ?si=U2qHAKXoNTTfVOzi" target="_blank">Video (0:00–40:00)</a>
+                    <a href="https://youtu.be/LZ_PlFskqIQ?si=U2qHAKXoNTfVOzi" target="_blank">Video (0:00–40:00)</a>
                 </div>
             </div>
 
@@ -857,7 +859,6 @@
             </div>
         </section>
 
-        <!-- Section 4: Teaching -->
         <section id="teaching">
             <h2>Teaching</h2>
             
@@ -895,7 +896,6 @@
             </div>
         </section>
 
-        <!-- Section 5: Contact -->
         <section id="contact">
             <h2>Contact</h2>
             <div class="contact-row" style="margin-top:1.5rem;">
@@ -913,18 +913,18 @@
         </section>
     </div>
 
-    <!-- Layout Logic JavaScript Assembly -->
     <script>
         const toggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
 
-        // Theme management module (Fallback directly to clean Light setup)
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        } else {
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'light') {
             document.body.classList.remove('dark-mode');
             themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
 
         toggleBtn.addEventListener('click', () => {
