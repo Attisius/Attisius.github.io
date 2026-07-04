@@ -19,17 +19,19 @@
             --sticky-offset: 0px;
         }
 
-        /* Announcement Highlight - Light Mode (Dark Bold, Link in blue with no underline) */
+        /* Announcement Highlight - Light Mode (Dark Bold body text) */
         .highlight-announcement {
             color: #0f172a; 
             font-weight: 700;
         }
+        /* FIXED: Changes the link from blue to dark bold with an underline */
         .highlight-announcement a {
-            color: #2563eb;
-            text-decoration: none; 
+            color: #0f172a;       /* Deep crisp dark color matching the text */
+            font-weight: 700;     /* Ensures it stays bold */
+            text-decoration: underline; /* Adds the underline */
         }
         .highlight-announcement a:hover {
-            text-decoration: underline; 
+            color: #2563eb;       /* Optional: shifts to blue on hover so it feels interactive */
         }
 
         /* Dark Mode Color Overrides */
@@ -332,6 +334,22 @@
             font-style: italic;
             color: var(--text-muted);
             display: inline-block;
+        }
+        
+        /* ADD THIS RULE: Removes the default underline from conference links in light mode */
+        .pub-venue a {
+            text-decoration: none;
+        }
+
+        /* ADD THIS RULE: Removes the default underline from conference links in dark mode */
+        body.dark-mode .pub-venue a {
+            text-decoration: none;
+        }
+
+        /* OPTIONAL: Adds the underline back cleanly only when a user hovers over the conference link */
+        .pub-venue a:hover,
+        body.dark-mode .pub-venue a:hover {
+            text-decoration: underline;
         }
 
         .pub-award {
