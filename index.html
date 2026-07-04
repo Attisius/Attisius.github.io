@@ -363,6 +363,31 @@
 
         /* Layout fallback for mobile screens */
         @media (max-width: 960px) {
+            
+            /* FORCE DARK MODE BY DEFAULT ON MOBILE VIEWPORTS */
+            :root {
+                --content-bg: #1a1d20;
+                --text-main: #f1f5f9;
+                --text-muted: #94a3b8;
+                --border: #334155;
+                --light-bg: #111416;
+                --accent: #58a6ff;
+            }
+            .pub-title a { color: var(--accent); }
+            .pub-title { color: #f1f5f9; }
+            .pub-type { color: #f1f5f9; }
+            a.inline-link { color: var(--accent); }
+            .pub-venue a { color: #60a5fa; }
+            .pub-award {
+                color: #f87171;
+                background-color: rgba(248, 113, 113, 0.15);
+            }
+            .news-text strong {
+                color: #f87171;
+                text-decoration: none;
+            }
+            /* END MOBILE DARK MODE DEFAULTS */
+
             :root { --sticky-offset: -1px; } /* Ensures clean pinning under high density viewports */
             body { 
                 grid-template-columns: 1fr; /* Drops the 340px grid split on mobile */
@@ -581,7 +606,7 @@
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2510.04834" target="_blank">On the Hardness of Learning Regular Expressions</a></div>
                 <div class="pub-authors">Idan Attias, Lev Reyzin, Nathan Srebro, Gal Vardi</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</div>
+                <div class="pub-venue">37th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v313/attias26a.html" target="_blank">ALT 2026</a>)</div>
                 </div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Arxiv</a></div>
             </div>
@@ -748,7 +773,7 @@
                 <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
                 <div class="pub-authors">Idan Attias, Edith Cohen, Moshe Shechner, Uri Stemmer</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</div>
+                     <div class="pub-venue">14th Innovations in Theoretical Computer Science (<a href="https://drops.dagstuhl.de/opus/frontdoor.php?source_opus=17511" target="_blank">ITCS 2023</a>)</div>
                 </div>
                 <div class="pub-links">
                     <a href="https://arxiv.org/abs/2107.14527" target="_blank">Arxiv</a> • 
@@ -819,7 +844,7 @@
                 <div class="pub-title"><a href="https://arxiv.org/pdf/1810.02180" target="_blank">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
                 <div class="pub-authors">Idan Attias, Aryeh Kontorovich, Yishay Mansour</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 23 (<a href="https://www.jmlr.org/papers/v23/20-1353.html" target="_blank">JRLM 2022</a>)<br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: ALT 2019</span></div>
+                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 23 (<a href="https://www.jmlr.org/papers/v23/20-1353.html" target="_blank">JMLR 2022</a>)<br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: ALT 2019</span></div>
                 </div>
                 <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Arxiv</a></div>
             </div>
