@@ -459,6 +459,96 @@
             }
         }
     </style>
+    <style>
+/* Topic controls use the site's existing palette in both themes. */
+[hidden] { display: none !important; }
+button, select { font: inherit; }
+button:focus-visible, a:focus-visible, select:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.topic-panel {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--light-bg);
+  padding: 1.25rem;
+  margin: 0 0 1.5rem;
+  scroll-margin-top: 6rem;
+}
+.topic-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .6rem 1rem;
+}
+.topic-panel h3 { font-size: 1rem; font-weight: 650; }
+.topic-result-count { font-size: .875rem; color: var(--text-muted); }
+.topic-options { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; }
+.topic-chip, .paper-topic {
+  color: var(--text-muted);
+  background: var(--content-bg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.topic-chip {
+  border-radius: 20px;
+  padding: .45rem .75rem;
+  font-size: .875rem;
+  line-height: 1.35;
+  min-height: 36px;
+}
+.topic-chip:hover, .paper-topic:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.topic-chip[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+body.dark-mode .topic-chip[aria-pressed="true"] { color: #101820; }
+.topic-total { font-size: .8rem; margin-left: .4rem; opacity: .8; font-variant-numeric: tabular-nums; }
+.match-control { display: flex; align-items: center; gap: .5rem; font-size: .875rem; margin-top: 1rem; }
+.match-select-wrap { position: relative; }
+.match-select-wrap::after {
+  content: ''; position: absolute; right: .8rem; top: .65rem;
+  width: .4rem; height: .4rem; border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor; transform: rotate(45deg); pointer-events: none;
+}
+#topic-match {
+  appearance: none; border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text-main); background: var(--content-bg);
+  padding: .35rem 2rem .35rem .6rem; cursor: pointer;
+}
+.paper-topics { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .65rem; }
+.paper-topic { border-radius: 5px; font-size: .875rem; padding: .18rem .5rem; line-height: 1.4; background: var(--light-bg); }
+.paper-topic[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+.topic-empty { padding: 2.5rem 1.25rem; text-align: center; border: 1px dashed var(--border); border-radius: 10px; margin: 2rem 0; }
+.topic-empty p { margin-bottom: 1rem; font-size: 1rem; }
+.topic-reset { color: var(--accent); background: none; border: none; cursor: pointer; font-size: .95rem; text-decoration: underline; text-underline-offset: 3px; }
+.pub-links { flex-wrap: wrap; }
+.pub-preliminary { display: block; margin-top: .25rem; font-size: .9rem; font-style: normal; }
+.content-container { min-width: 0; }
+@media (min-width: 961px) and (max-width: 1200px) { .content-container { padding-left: 3rem; padding-right: 3rem; } }
+@media (max-width: 960px) {
+  .sticky-pub-nav { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) !important; gap: .5rem !important; }
+  .pub-filter-link { font-size: .875rem !important; padding: .4rem .5rem !important; white-space: normal !important; }
+}
+@media (max-width: 600px) {
+  .topic-panel { padding: 1rem; }
+  .topic-options { gap: .45rem; }
+  .topic-chip { min-height: 40px; padding: .5rem .65rem; }
+  .paper-topic { min-height: 32px; display: inline-flex; align-items: center; }
+  .pub-award { white-space: normal; }
+  #theme-toggle { width: 3rem !important; height: 3rem !important; bottom: 1rem !important; right: 1rem !important; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+@media print { .topic-panel, .paper-topics, #theme-toggle, .sticky-pub-nav { display: none !important; } }
+    </style>
+    <meta name="description" content="Idan Attias — research, publications, and topic filters.">
 </head>
 <body class="dark-mode">
 
@@ -493,11 +583,11 @@
         </div>
         
         <div class="social-icons">
-            <a href="https://scholar.google.com/citations?user=-L6uUy0AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
-            <a href="https://dblp.org/pid/228/6803.html" target="_blank" title="DBLP"><i class="fa-solid fa-database"></i></a>
-            <a href="https://arxiv.org/search/?query=idan+attias&searchtype=all&abstracts=show&order=-announced_date_first&size=50" target="_blank" title="arXiv"><i class="fa-solid fa-file-lines"></i></a>
-            <a href="https://twitter.com/idanattias" target="_blank" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/idan-attias-79114497/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://scholar.google.com/citations?user=-L6uUy0AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href="https://dblp.org/pid/228/6803.html" target="_blank" rel="noopener noreferrer" title="DBLP"><i class="fa-solid fa-database"></i></a>
+            <a href="https://arxiv.org/search/?query=idan+attias&searchtype=all&abstracts=show&order=-announced_date_first&size=50" target="_blank" rel="noopener noreferrer" title="arXiv"><i class="fa-solid fa-file-lines"></i></a>
+            <a href="https://twitter.com/idanattias" target="_blank" rel="noopener noreferrer" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/idan-attias-79114497/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
         </div>
         
         <ul class="nav-menu">
@@ -514,9 +604,9 @@
         <section id="about">
             <h2>About</h2>
             <p>Hello!</p>
-            <p>I am a postdoctoral researcher at the Institute for Data, Econometrics, Algorithms, and Learning (<a href="https://www.ideal-institute.org/" target="_blank" class="inline-link">IDEAL</a>) in Chicago, where I am hosted by <a href="https://www.levreyzin.com/" target="_blank" class="inline-link">Lev Reyzin</a> (University of Illinois Chicago), <a href="https://home.ttic.edu/~avrim/" target="_blank" class="inline-link">Avrim Blum</a> and <a href="https://nati.ttic.edu/" target="_blank" class="inline-link">Nati Srebro</a> (Toyota Technological Institute at Chicago). I earned my PhD from the Computer Science Department at Ben-Gurion University, where I had the privilege of being advised by <a href="https://www.cs.bgu.ac.il/~karyeh/" target="_blank" class="inline-link">Aryeh Kontorovich</a> (Ben-Gurion University) and <a href="https://www.tau.ac.il/~mansour/" target="_blank" class="inline-link">Yishay Mansour</a> (Tel Aviv University and Google Research). Prior to that, I completed my Bachelor's degree in Mathematics and Computer Science at Tel Aviv University.</p>
+            <p>I am a postdoctoral researcher at the Institute for Data, Econometrics, Algorithms, and Learning (<a href="https://www.ideal-institute.org/" target="_blank" rel="noopener noreferrer" class="inline-link">IDEAL</a>) in Chicago, where I am hosted by <a href="https://www.levreyzin.com/" target="_blank" rel="noopener noreferrer" class="inline-link">Lev Reyzin</a> (University of Illinois Chicago), <a href="https://home.ttic.edu/~avrim/" target="_blank" rel="noopener noreferrer" class="inline-link">Avrim Blum</a> and <a href="https://nati.ttic.edu/" target="_blank" rel="noopener noreferrer" class="inline-link">Nati Srebro</a> (Toyota Technological Institute at Chicago). I earned my PhD from the Computer Science Department at Ben-Gurion University, where I had the privilege of being advised by <a href="https://www.cs.bgu.ac.il/~karyeh/" target="_blank" rel="noopener noreferrer" class="inline-link">Aryeh Kontorovich</a> (Ben-Gurion University) and <a href="https://www.tau.ac.il/~mansour/" target="_blank" rel="noopener noreferrer" class="inline-link">Yishay Mansour</a> (Tel Aviv University and Google Research). Prior to that, I completed my Bachelor's degree in Mathematics and Computer Science at Tel Aviv University.</p>
             
-            <p class="highlight-announcement">I’ll be joining the <a href="https://www.cs.technion.ac.il/" target="_blank">Computer Science Department at the Technion</a> as a faculty member in 2027.<br>Feel free to reach out if you'd like to discuss research or collaboration opportunities.</p>
+            <p class="highlight-announcement">I’ll be joining the <a href="https://www.cs.technion.ac.il/" target="_blank" rel="noopener noreferrer">Computer Science Department at the Technion</a> as a faculty member in 2027.<br>Feel free to reach out if you'd like to discuss research or collaboration opportunities.</p>
             
             <h3 style="font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-top: 2rem; color: var(--text-main);">Research interests</h3>
             <p style="margin-top: 0.5rem;">My primary research interests lie in the foundations of machine learning theory and data-driven sequential decision-making, as well as their intersections with game theory, private data analysis, information theory, signal processing, theoretical computer science and cognitive science.</p>
@@ -531,11 +621,11 @@
                 </div>
                  <div class="news-row">
                     <div class="news-date">Aug 2026</div>
-                    <div class="news-text">I'll participate in the <a href="https://www.ipam.ucla.edu/programs/workshops/foundations-of-interpretability/" target="_blank">Foundations of Interpretability Workshop</a> at UCLA.</div>
+                    <div class="news-text">I'll participate in the <a href="https://www.ipam.ucla.edu/programs/workshops/foundations-of-interpretability/" target="_blank" rel="noopener noreferrer">Foundations of Interpretability Workshop</a> at UCLA.</div>
                 </div>
                 <div class="news-row">
                     <div class="news-date">Feb 2026</div>
-                    <div class="news-text">I gave a talk on the hardness of learning regular expressions at the <a href="https://flannseminars.github.io/index.html" target="_blank">FLaNN Seminar</a>. This paper recently received an <strong>Elegance Paper Award at ALT 2026</strong>.</div>
+                    <div class="news-text">I gave a talk on the hardness of learning regular expressions at the <a href="https://flannseminars.github.io/index.html" target="_blank" rel="noopener noreferrer">FLaNN Seminar</a>. This paper recently received an <strong>Elegance Paper Award at ALT 2026</strong>.</div>
                 </div>
                 <div class="news-row">
                     <div class="news-date">Nov 2025</div>
@@ -543,366 +633,437 @@
                 </div>
                 <div class="news-row">
                     <div class="news-date">Feb 2025</div>
-                    <div class="news-text">I'll participate in the Deep Learning Theory <a href="https://simons.berkeley.edu/workshops/deep-learning-theory#simons-tabs" target="_blank">workshop at the Simons Institute in Berkeley</a> (Feb 2025) and at the <a href="https://www.simonsfoundation.org/event/mathematical-and-scientific-foundations-of-deep-learning-annual-meeting-2025/" target="_blank">Simons Foundation in New York</a> (Sep 2025).</div>
+                    <div class="news-text">I'll participate in the Deep Learning Theory <a href="https://simons.berkeley.edu/workshops/deep-learning-theory#simons-tabs" target="_blank" rel="noopener noreferrer">workshop at the Simons Institute in Berkeley</a> (Feb 2025) and at the <a href="https://www.simonsfoundation.org/event/mathematical-and-scientific-foundations-of-deep-learning-annual-meeting-2025/" target="_blank" rel="noopener noreferrer">Simons Foundation in New York</a> (Sep 2025).</div>
                 </div>
                 <div class="news-row">
                     <div class="news-date">Oct 2024</div>
-                    <div class="news-text">I’m helping with the organization of <a href="https://focs.computer.org/2024/" target="_blank">FOCS 2024</a> in Chicago, come to the learning session on October 30.</div>
+                    <div class="news-text">I’m helping with the organization of <a href="https://focs.computer.org/2024/" target="_blank" rel="noopener noreferrer">FOCS 2024</a> in Chicago, come to the learning session on October 30.</div>
                 </div>
                 <div class="news-row">
                     <div class="news-date">Nov 2024</div>
-                    <div class="news-text">I'll participate in the <a href="https://datascience.ucsd.edu/rising-stars-in-data-science/" target="_blank">Rising Stars in Data Science workshop</a> at UCSD.</div>
+                    <div class="news-text">I'll participate in the <a href="https://datascience.ucsd.edu/rising-stars-in-data-science/" target="_blank" rel="noopener noreferrer">Rising Stars in Data Science workshop</a> at UCSD.</div>
                 </div>
                 <div class="news-row">
                     <div class="news-date">Jul 2024</div>
                     <div class="news-text">Our paper on "Information Complexity of Stochastic Convex Optimization" won a <strong>best paper award at ICML 2024</strong>.</div>
 <!--                 <div class="news-row">
                     <div class="news-date">Aug 2023</div>
-                    <div class="news-text">I'll be at <a href="https://vectorinstitute.ai/" target="_blank">Vector Institute</a> to work with <a href="http://danroy.org/" target="_blank">Daniel Roy</a> and <a href="https://gkdz.org/" target="_blank">Karolina Dziugaite</a> as a research intern starting August 2023.</div>
+                    <div class="news-text">I'll be at <a href="https://vectorinstitute.ai/" target="_blank" rel="noopener noreferrer">Vector Institute</a> to work with <a href="http://danroy.org/" target="_blank" rel="noopener noreferrer">Daniel Roy</a> and <a href="https://gkdz.org/" target="_blank" rel="noopener noreferrer">Karolina Dziugaite</a> as a research intern starting August 2023.</div>
                 </div> -->
             </div>
         </section>
 
         <section id="publications">
             <h2>Publications</h2>
-            
+
             <nav class="sticky-pub-nav">
                 <a href="#preprints" class="pub-filter-link">Preprints</a>
-                <a href="#conferences" class="pub-filter-link">Conferences</a>
-                <a href="#journals" class="pub-filter-link">Journals</a>
+                <a href="#published" class="pub-filter-link">Conferences &amp; Journals</a>
             </nav>
+
+            <div class="topic-panel" id="topic-panel" aria-labelledby="topic-panel-title">
+                <div class="topic-panel-header">
+                    <h3 id="topic-panel-title">Filter by topic</h3>
+                    <span class="topic-result-count" id="topic-result-count" role="status" aria-live="polite">All 29 papers</span>
+                </div>
+                <div class="topic-options" role="group" aria-label="Filter publications by research topic">
+                    <button type="button" class="topic-chip" id="all-topics" aria-pressed="true">All papers</button>
+                    <button type="button" class="topic-chip" data-topic="learning-theory" aria-pressed="false">Learning theory<span class="topic-total" aria-hidden="true">17</span></button>
+                    <button type="button" class="topic-chip" data-topic="deep-learning" aria-pressed="false">Deep learning<span class="topic-total" aria-hidden="true">2</span></button>
+                    <button type="button" class="topic-chip" data-topic="online-learning" aria-pressed="false">Online learning<span class="topic-total" aria-hidden="true">12</span></button>
+                    <button type="button" class="topic-chip" data-topic="bandits" aria-pressed="false">Bandits<span class="topic-total" aria-hidden="true">3</span></button>
+                    <button type="button" class="topic-chip" data-topic="differential-privacy" aria-pressed="false">Differential privacy<span class="topic-total" aria-hidden="true">4</span></button>
+                    <button type="button" class="topic-chip" data-topic="game-theory" aria-pressed="false">Game theory<span class="topic-total" aria-hidden="true">4</span></button>
+                    <button type="button" class="topic-chip" data-topic="streaming" aria-pressed="false">Streaming<span class="topic-total" aria-hidden="true">1</span></button>
+                    <button type="button" class="topic-chip" data-topic="algorithms" aria-pressed="false">Algorithms<span class="topic-total" aria-hidden="true">9</span></button>
+                    <button type="button" class="topic-chip" data-topic="computational-complexity" aria-pressed="false">Computational complexity<span class="topic-total" aria-hidden="true">1</span></button>
+                    <button type="button" class="topic-chip" data-topic="optimization" aria-pressed="false">Optimization<span class="topic-total" aria-hidden="true">5</span></button>
+                    <button type="button" class="topic-chip" data-topic="robust-learning" aria-pressed="false">Robust learning<span class="topic-total" aria-hidden="true">5</span></button>
+                    <button type="button" class="topic-chip" data-topic="information-theory" aria-pressed="false">Information theory<span class="topic-total" aria-hidden="true">3</span></button>
+                    <button type="button" class="topic-chip" data-topic="fourier-analysis" aria-pressed="false">Fourier analysis<span class="topic-total" aria-hidden="true">1</span></button>
+
+                </div>
+                <label class="match-control" id="match-control" hidden>Match
+                        <span class="match-select-wrap"><select id="topic-match" aria-label="How to combine selected topics">
+                            <option value="any">Any selected topic</option>
+                            <option value="all">All selected topics</option>
+                        </select></span>
+                    </label>
+            </div>
+            <div class="topic-empty" id="topic-empty" hidden>
+                <p>No papers match this combination of topics.</p>
+                <button type="button" class="topic-reset" id="empty-reset">Show all papers</button>
+            </div>
+
 
             <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem;">* Authors are listed in alphabetical order, except sometimes when a student author is listed first.</p>
 
+            <div class="publication-group" data-group="preprints">
             <div class="pub-type" id="preprints">Preprints</div>
 
-             <div class="pub-entry">
+            <div class="pub-entry" data-topics="fourier-analysis algorithms learning-theory">
                 <div class="pub-title">Efficient Non-Adaptive Sparse Fourier Learning on the Boolean
 				Cube and Finite Abelian Groups</div>
                 <div class="pub-authors">Idan Attias, Nader Bshouty, Marko Medvedev, Nathan Srebro</div>
 
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="fourier-analysis" aria-pressed="false" aria-label="Filter papers by Fourier analysis">Fourier analysis</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2609.33888" target="_blank">Vanilla Policy Optimization Is Both Optimal and Differentially
+            <div class="pub-entry" data-topics="online-learning bandits differential-privacy">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2609.33888" target="_blank" rel="noopener noreferrer">Vanilla Policy Optimization Is Both Optimal and Differentially
                 Private for Stochastic Contextual Bandits</a></div>
                 <div class="pub-authors">Idan Attias, Orin Levy, Alexander Ryabchenko, Yishay Mansour, Uri Stemmer</div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2609.33888" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2609.33888" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="bandits" aria-pressed="false" aria-label="Filter papers by Bandits">Bandits</button><button type="button" class="paper-topic" data-topic="differential-privacy" aria-pressed="false" aria-label="Filter papers by Differential privacy">Differential privacy</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2501.10884" target="_blank">Smoothed Analysis of Nash Equilibrium and Fixed Point Computation, and Efficiency of the Homotopy Method
+            <div class="pub-entry" data-topics="game-theory algorithms optimization">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2501.10884" target="_blank" rel="noopener noreferrer">Smoothed Analysis of Nash Equilibrium and Fixed Point Computation, and Efficiency of the Homotopy Method
 				</a></div>
                 <div class="pub-authors">Idan Attias, Yuval Dagan, Constantinos Daskalakis, Rui Yao, Manolis Zampetakis</div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2501.10884" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2501.10884" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="game-theory" aria-pressed="false" aria-label="Filter papers by Game theory">Game theory</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button><button type="button" class="paper-topic" data-topic="optimization" aria-pressed="false" aria-label="Filter papers by Optimization">Optimization</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2505.06146" target="_blank">Learning-Augmented Algorithms for Boolean Satisfiability</a></div>
+            <div class="pub-entry" data-topics="algorithms">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2505.06146" target="_blank" rel="noopener noreferrer">Learning-Augmented Algorithms for Boolean Satisfiability</a></div>
                 <div class="pub-authors">Idan Attias, Xing Gao, Lev Reyzin</div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2505.06146" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2505.06146" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button></div>
+            </div>
             </div>
 
+            <div class="publication-group" data-group="published">
+            <div class="pub-type" id="published">Conferences &amp; Journals</div>
 
-            <div class="pub-type" id="conferences">Conference Publications</div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2605.07155" target="_blank">Regret–Oracle Complexity Tradeoffs in Agnostic Online Learning</a></div>
+            <div class="pub-entry" data-topics="online-learning learning-theory algorithms">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2605.07155" target="_blank" rel="noopener noreferrer">Regret–Oracle Complexity Tradeoffs in Agnostic Online Learning</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Arvind Ramaswami</div>
                 <div class="pub-venue">40th Annual Conference on Neural Information Processing Systems (NeurIPS 2026)</div>
                 <span class="pub-award">Spotlight</span>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2605.07155" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2605.07155" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2606.11711" target="_blank">Capacity-Constrained Online Convex Optimization with Delayed Feedback</a></div>
+            <div class="pub-entry" data-topics="online-learning optimization">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2606.11711" target="_blank" rel="noopener noreferrer">Capacity-Constrained Online Convex Optimization with Delayed Feedback</a></div>
                 <div class="pub-authors">Alexander Ryabchenko, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-venue">40th Annual Conference on Neural Information Processing Systems (NeurIPS 2026)</div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2606.11711" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2606.11711" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="optimization" aria-pressed="false" aria-label="Filter papers by Optimization">Optimization</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2602.02634" target="_blank">A Reduction from Delayed to Immediate Feedback for Online Convex Optimization with Improved Guarantees</a></div>
+            <div class="pub-entry" data-topics="online-learning optimization">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2602.02634" target="_blank" rel="noopener noreferrer">A Reduction from Delayed to Immediate Feedback for Online Convex Optimization with Improved Guarantees</a></div>
                 <div class="pub-authors">Alexander Ryabchenko, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-venue">40th Annual Conference on Neural Information Processing Systems (NeurIPS 2026)</div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2602.02634" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2602.02634" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="optimization" aria-pressed="false" aria-label="Filter papers by Optimization">Optimization</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2602.08907" target="_blank">Positive Distribution Shift as a Framework for Understanding Tractable Learning</a></div>
+            <div class="pub-entry" data-topics="learning-theory algorithms deep-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2602.08907" target="_blank" rel="noopener noreferrer">Positive Distribution Shift as a Framework for Understanding Tractable Learning</a></div>
                 <div class="pub-authors">Marko Medvedev, Idan Attias, Elisabetta Cornacchia, Theodor Misiakiewicz, Gal Vardi, Nathan Srebro</div>
                 <div class="pub-meta-row">
                     <div class="pub-venue">43rd International Conference on Machine Learning (ICML 2026)</div>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2602.08907" target="_blank">Arxiv</a> • 
-                    <a href="https://x.com/IdanAttias/status/2022396556075504045" target="_blank">Twitter summary</a> • 
-                    <a href="https://www.youtube.com/watch?v=I7AMe3xlknk&t=6s" target="_blank">Video (3:50-38:20)</a>
+                    <a href="https://arxiv.org/abs/2602.08907" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://x.com/IdanAttias/status/2022396556075504045" target="_blank" rel="noopener noreferrer">Twitter summary</a> •
+                    <a href="https://www.youtube.com/watch?v=I7AMe3xlknk&t=6s" target="_blank" rel="noopener noreferrer">Video (3:50-38:20)</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button><button type="button" class="paper-topic" data-topic="deep-learning" aria-pressed="false" aria-label="Filter papers by Deep learning">Deep learning</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2510.04834" target="_blank">On the Hardness of Learning Regular Expressions</a></div>
+            <div class="pub-entry" data-topics="learning-theory computational-complexity">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2510.04834" target="_blank" rel="noopener noreferrer">On the Hardness of Learning Regular Expressions</a></div>
                 <div class="pub-authors">Idan Attias, Lev Reyzin, Nathan Srebro, Gal Vardi</div>
                 <div class="pub-meta-row">
-                <div class="pub-venue">37th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v313/attias26a.html" target="_blank">ALT 2026</a>)</div>
+                <div class="pub-venue">37th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v313/attias26a.html" target="_blank" rel="noopener noreferrer">ALT 2026</a>)</div>
                 <span class="pub-award">Elegant Paper Award</span>
                 </div>
                 <div class="pub-links">
-                	<a href="https://arxiv.org/abs/2510.04834" target="_blank">Arxiv</a> •
-                	<a href="https://www.youtube.com/watch?v=rBFjhP1FoGY" target="_blank">Video</a>
+                	<a href="https://arxiv.org/abs/2510.04834" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                	<a href="https://www.youtube.com/watch?v=rBFjhP1FoGY" target="_blank" rel="noopener noreferrer">Video</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="computational-complexity" aria-pressed="false" aria-label="Filter papers by Computational complexity">Computational complexity</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2506.00135" target="_blank">Tradeoffs between Mistakes and ERM Oracle Calls in Online and Transductive Online Learning</a></div>
+            <div class="pub-entry" data-topics="online-learning learning-theory algorithms">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2506.00135" target="_blank" rel="noopener noreferrer">Tradeoffs between Mistakes and ERM Oracle Calls in Online and Transductive Online Learning</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Arvind Ramaswami</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">39th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2025/hash/6d8452744e2dd26f3dfcba34cff6e06e-Abstract-Conference.html" target="_blank">NeurIPS 2025</a>)</div>
+                    <div class="pub-venue">39th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2025/hash/6d8452744e2dd26f3dfcba34cff6e06e-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">NeurIPS 2025</a>)</div>
                     <span class="pub-award">Spotlight</span>
                 </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2506.00135" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2506.00135" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2502.17384" target="_blank">On Traceability in ℓp Stochastic Convex Optimization</a></div>
+            <div class="pub-entry" data-topics="optimization differential-privacy learning-theory information-theory">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2502.17384" target="_blank" rel="noopener noreferrer">On Traceability in ℓp Stochastic Convex Optimization</a></div>
                 <div class="pub-authors">Sasha Voitovych, Mahdi Haghifam, Idan Attias, Gintare Karolina Dziugaite, Roi Livni, Daniel M. Roy</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">39th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2025/hash/cb628330172cd02c14b396cc3b529fad-Abstract-Conference.html" target="_blank">NeurIPS 2025</a>)</div>
+                    <div class="pub-venue">39th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2025/hash/cb628330172cd02c14b396cc3b529fad-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">NeurIPS 2025</a>)</div>
                     <span class="pub-award">Spotlight</span>
                 </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2502.17384" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2502.17384" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="optimization" aria-pressed="false" aria-label="Filter papers by Optimization">Optimization</button><button type="button" class="paper-topic" data-topic="differential-privacy" aria-pressed="false" aria-label="Filter papers by Differential privacy">Differential privacy</button><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="information-theory" aria-pressed="false" aria-label="Filter papers by Information theory">Information theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2503.19856" target="_blank">Capacity-Constrained Online Learning with Delays: Scheduling Frameworks and Regret Trade-offs</a></div>
+            <div class="pub-entry" data-topics="online-learning bandits algorithms">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2503.19856" target="_blank" rel="noopener noreferrer">Capacity-Constrained Online Learning with Delays: Scheduling Frameworks and Regret Trade-offs</a></div>
                 <div class="pub-authors">Alexander Ryabchenko, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">38th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v291/ryabchenko25a.html" target="_blank">COLT 2025</a>)</div>
+                    <div class="pub-venue">38th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v291/ryabchenko25a.html" target="_blank" rel="noopener noreferrer">COLT 2025</a>)</div>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2503.19856" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1D7mOXbIra6Y-r_v3xzH-JCgkMpDeUTce/view?usp=sharing" target="_blank">Slides</a> • 
-                    <a href="https://www.youtube.com/watch?v=rSNxoHVTZdk&list=PLCHBdlWR7RYx9VNiWhgSboOAFfiYubw8u&index=27" target="_blank">Video (Alex, 44:30-55:30)</a> • 
-                    <a href="https://youtu.be/LZ_PlFskqIQ?si=MpHe5oEjQkWSnjoV" target="_blank">Video (40:30-54:00)</a>
+                    <a href="https://arxiv.org/abs/2503.19856" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1D7mOXbIra6Y-r_v3xzH-JCgkMpDeUTce/view?usp=sharing" target="_blank" rel="noopener noreferrer">Slides</a> •
+                    <a href="https://www.youtube.com/watch?v=rSNxoHVTZdk&list=PLCHBdlWR7RYx9VNiWhgSboOAFfiYubw8u&index=27" target="_blank" rel="noopener noreferrer">Video (Alex, 44:30-55:30)</a> •
+                    <a href="https://youtu.be/LZ_PlFskqIQ?si=MpHe5oEjQkWSnjoV" target="_blank" rel="noopener noreferrer">Video (40:30-54:00)</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="bandits" aria-pressed="false" aria-label="Filter papers by Bandits">Bandits</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2503.03184" target="_blank">PAC Learning with Improvements</a></div>
+            <div class="pub-entry" data-topics="learning-theory game-theory">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2503.03184" target="_blank" rel="noopener noreferrer">PAC Learning with Improvements</a></div>
                 <div class="pub-authors">Idan Attias, Avrim Blum, Keziah Naggita, Donya Saless, Dravyansh Sharma, Matthew Walter</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">42nd International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v267/attias25a.html" target="_blank">ICML 2025</a>)</div>
+                    <div class="pub-venue">42nd International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v267/attias25a.html" target="_blank" rel="noopener noreferrer">ICML 2025</a>)</div>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2503.03184" target="_blank">Arxiv</a> • 
-                    <a href="https://www.youtube.com/watch?v=8Ex1rsECvbk&t=12s" target="_blank">Video (Avrim, 25:00-38:00)</a>
+                    <a href="https://arxiv.org/abs/2503.03184" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://www.youtube.com/watch?v=8Ex1rsECvbk&t=12s" target="_blank" rel="noopener noreferrer">Video (Avrim, 25:00-38:00)</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="game-theory" aria-pressed="false" aria-label="Filter papers by Game theory">Game theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2410.13012" target="_blank">Sample Compression Scheme Reductions</a></div>
+            <div class="pub-entry" data-topics="learning-theory">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2410.13012" target="_blank" rel="noopener noreferrer">Sample Compression Scheme Reductions</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Arvind Ramaswami</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">36th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v272/attias25a.html" target="_blank">ALT 2025</a>)</div>
+                    <div class="pub-venue">36th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v272/attias25a.html" target="_blank" rel="noopener noreferrer">ALT 2025</a>)</div>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2410.13012" target="_blank">Arxiv</a> • 
-                    <a href="https://youtu.be/wZbEnGni_50?si=NeQz_sZUYFdr5xTV" target="_blank">Video (Arvind)</a>
+                    <a href="https://arxiv.org/abs/2410.13012" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://youtu.be/wZbEnGni_50?si=NeQz_sZUYFdr5xTV" target="_blank" rel="noopener noreferrer">Video (Arvind)</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2410.03849" target="_blank">Sequential Probability Assignment with Contexts: Minimax Regret, Contextual Shtarkov Sums, and Contextual Normalized Maximum Likelihood</a></div>
+            <div class="pub-entry" data-topics="online-learning information-theory">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2410.03849" target="_blank" rel="noopener noreferrer">Sequential Probability Assignment with Contexts: Minimax Regret, Contextual Shtarkov Sums, and Contextual Normalized Maximum Likelihood</a></div>
                 <div class="pub-authors">Ziyi Liu, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">38th Annual Conference on Neural Information Processing Systems (<a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/19a94fdf9e1c5b387830e4c4fef6972a-Abstract-Conference.html" target="_blank">NeurIPS 2024</a>)</div>
+                    <div class="pub-venue">38th Annual Conference on Neural Information Processing Systems (<a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/19a94fdf9e1c5b387830e4c4fef6972a-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">NeurIPS 2024</a>)</div>
                 </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2410.03849" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2410.03849" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="information-theory" aria-pressed="false" aria-label="Filter papers by Information theory">Information theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2402.09327" target="_blank">Information Complexity of Stochastic Convex Optimization: Applications to Generalization and Memorization</a></div>
+            <div class="pub-entry" data-topics="optimization information-theory learning-theory differential-privacy">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2402.09327" target="_blank" rel="noopener noreferrer">Information Complexity of Stochastic Convex Optimization: Applications to Generalization and Memorization</a></div>
                 <div class="pub-authors">Idan Attias, Gintare Karolina Dziugaite, Mahdi Haghifam, Roi Livni, Daniel M. Roy</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/attias24a.html" target="_blank">ICML 2024</a>)</div>
+                    <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/attias24a.html" target="_blank" rel="noopener noreferrer">ICML 2024</a>)</div>
                     <span class="pub-award">ICML 2024 Best Paper Award • Oral Presentation</span>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2402.09327" target="_blank">Arxiv</a> • 
-                    <a href="https://twitter.com/HaghifamMahdi/status/1758155030912540936" target="_blank">Twitter summary</a> • 
-                    <a href="https://drive.google.com/file/d/1E6Tvzf-vh-dm2xYfeJXyjrnBmsF-k-fV/view?usp=sharing" target="_blank">Slides</a> • 
-                    <a href="https://youtu.be/bpxXs-Fq9mQ?si=px8lOFBvh0NaiNkP" target="_blank">Video</a>
+                    <a href="https://arxiv.org/abs/2402.09327" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://twitter.com/HaghifamMahdi/status/1758155030912540936" target="_blank" rel="noopener noreferrer">Twitter summary</a> •
+                    <a href="https://drive.google.com/file/d/1E6Tvzf-vh-dm2xYfeJXyjrnBmsF-k-fV/view?usp=sharing" target="_blank" rel="noopener noreferrer">Slides</a> •
+                    <a href="https://youtu.be/bpxXs-Fq9mQ?si=px8lOFBvh0NaiNkP" target="_blank" rel="noopener noreferrer">Video</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="optimization" aria-pressed="false" aria-label="Filter papers by Optimization">Optimization</button><button type="button" class="paper-topic" data-topic="information-theory" aria-pressed="false" aria-label="Filter papers by Information theory">Information theory</button><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="differential-privacy" aria-pressed="false" aria-label="Filter papers by Differential privacy">Differential privacy</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.01864" target="_blank">Agnostic Sample Compression Schemes for Regression</a></div>
+            <div class="pub-entry" data-topics="learning-theory">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.01864" target="_blank" rel="noopener noreferrer">Agnostic Sample Compression Schemes for Regression</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Aryeh Kontorovich, Menachem Sadigurschi</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/attias24b.html" target="_blank">ICML 2024</a>)</div>
+                    <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/attias24b.html" target="_blank" rel="noopener noreferrer">ICML 2024</a>)</div>
                     <span class="pub-award">Spotlight</span>
                 </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/1810.01864" target="_blank">Arxiv</a></div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/1810.01864" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2407.00950" target="_blank">Causal Bandits: The Pareto Optimal Frontier of Adaptivity, a Reduction to Linear Bandits, and Limitations around Unknown Marginal</a></div>
+            <div class="pub-entry" data-topics="bandits online-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2407.00950" target="_blank" rel="noopener noreferrer">Causal Bandits: The Pareto Optimal Frontier of Adaptivity, a Reduction to Linear Bandits, and Limitations around Unknown Marginal</a></div>
                 <div class="pub-authors">Ziyi Liu, Idan Attias, Daniel M. Roy</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/liu24b.html" target="_blank">ICML 2024</a>)</div>
+                    <div class="pub-venue">41st International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v235/liu24b.html" target="_blank" rel="noopener noreferrer">ICML 2024</a>)</div>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2407.00950" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1gQeQzGo0lkmvtxvsA1XXXZh5aZQ4-G8n/view?usp=sharing" target="_blank">Slides</a> • 
-                    <a href="https://youtu.be/LZ_PlFskqIQ?si=U2qHAKXoNTfVOzi" target="_blank">Video (0:00–40:00)</a>
+                    <a href="https://arxiv.org/abs/2407.00950" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1gQeQzGo0lkmvtxvsA1XXXZh5aZQ4-G8n/view?usp=sharing" target="_blank" rel="noopener noreferrer">Slides</a> •
+                    <a href="https://youtu.be/LZ_PlFskqIQ?si=U2qHAKXoNTfVOzi" target="_blank" rel="noopener noreferrer">Video (0:00–40:00)</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="bandits" aria-pressed="false" aria-label="Filter papers by Bandits">Bandits</button><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://proceedings.mlr.press/v247/attias24a/attias24a.pdf" target="_blank">Universal Rates for Real-Valued Regression: Separations between Cut-Off and Absolute Loss</a></div>
+            <div class="pub-entry" data-topics="learning-theory">
+                <div class="pub-title"><a href="https://proceedings.mlr.press/v247/attias24a/attias24a.pdf" target="_blank" rel="noopener noreferrer">Universal Rates for Real-Valued Regression: Separations between Cut-Off and Absolute Loss</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Alkis Kalavasis, Amin Karbasi, Grigoris Velegkas</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">37th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v247/attias24a.html" target="_blank">COLT 2024</a>)</div>
+                    <div class="pub-venue">37th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v247/attias24a.html" target="_blank" rel="noopener noreferrer">COLT 2024</a>)</div>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2307.03848" target="_blank">Optimal Learners for Realizable Regression: PAC Learning and Online Learning</a></div>
-                <div class="pub-authors">Idan Attias, Steve Hanneke, Alkis Kalavasis, Amin Karbasi, Grigoris Velegkas</div>
+            <div class="pub-entry" data-topics="learning-theory">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2110.04763" target="_blank" rel="noopener noreferrer">Fat-shattering dimension of k-fold Aggregations</a></div>
+                <div class="pub-authors">Idan Attias, Aryeh Kontorovich</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">37th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2023/hash/8c22e5e918198702765ecff4b20d0a90-Abstract-Conference.html" target="_blank">NeurIPS 2023</a>)</div>
-                    <span class="pub-award">Oral Presentation</span>
+                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 25 (<a href="https://jmlr.org/papers/v25/21-1193.html" target="_blank" rel="noopener noreferrer">JMLR 2024</a>)</div>
                 </div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2307.03848" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1b8IBhNGtxaPaPQsZXeOp9satFvyHuyiX/view?usp=drive_link" target="_blank">Slides</a>
-                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2110.04763" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2307.01689" target="_blank">Online Learning and Solving Infinite Games with an ERM Oracle</a></div>
-                <div class="pub-authors">Angelos Assos, Idan Attias, Yuval Dagan, Constantinos Daskalakis, Maxwell Fishelson</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">36th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v195/assos23a.html" target="_blank">COLT 2023</a>)</div>
-                </div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2307.01689" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1vgH3VBKtL65Eeojsi4Kq1vIsptCPbF2Y/view?usp=drive_link" target="_blank">Slides</a>
-                </div>
-            </div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2206.12977" target="_blank">Adversarially Robust PAC Learnability of Real-Valued Functions</a></div>
-                <div class="pub-authors">Idan Attias, Steve Hanneke</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">40th International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v202/attias23a.html" target="_blank">ICML 2023</a>)</div>
-                </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2206.12977" target="_blank">Arxiv</a></div>
-            </div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2202.06143" target="_blank">Learning Revenue Maximization using Posted Prices for Stochastic Strategic Patient Buyers</a></div>
-                <div class="pub-authors">Eitan-Hai Mashiah, Idan Attias, Yishay Mansour</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">37th Conference on Artificial Intelligence (<a href="https://ojs.aaai.org/index.php/AAAI/article/view/26091" target="_blank">AAAI 2023</a>)</div>
-                    <span class="pub-award">Oral Presentation</span>
-                </div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2202.06143" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1UkYkESoQGUWjUNV8ByqwN9eUR0gm3lQI/view?usp=drive_link" target="_blank">Slides</a>
-                </div>
-            </div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
+            <div class="pub-entry" data-topics="streaming differential-privacy algorithms">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank" rel="noopener noreferrer">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
                 <div class="pub-authors">Idan Attias, Edith Cohen, Moshe Shechner, Uri Stemmer</div>
                 <div class="pub-meta-row">
-                     <div class="pub-venue">14th Innovations in Theoretical Computer Science (<a href="https://drops.dagstuhl.de/opus/frontdoor.php?source_opus=17511" target="_blank">ITCS 2023</a>)</div>
+                    <div class="pub-venue"><a href="https://link.springer.com/article/10.1007/s00453-024-01259-8" target="_blank" rel="noopener noreferrer">Algorithmica 2024</a><span class="pub-preliminary">Preliminary version: 14th Innovations in Theoretical Computer Science (<a href="https://drops.dagstuhl.de/opus/frontdoor.php?source_opus=17511" target="_blank" rel="noopener noreferrer">ITCS 2023</a>)</span></div>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2107.14527" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1sk-VIIhrleylk52hzsrFUWkIO4BuSSFo/view?usp=drive_link" target="_blank">Slides</a> • 
-                    <a href="https://youtu.be/l8botDXqD_M?si=DLLbkKRX3YFhHeoj" target="_blank">Video (Moshe)</a>
+                    <a href="https://arxiv.org/abs/2107.14527" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1sk-VIIhrleylk52hzsrFUWkIO4BuSSFo/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Slides</a> •
+                    <a href="https://youtu.be/l8botDXqD_M?si=DLLbkKRX3YFhHeoj" target="_blank" rel="noopener noreferrer">Video (Moshe)</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="streaming" aria-pressed="false" aria-label="Filter papers by Streaming">Streaming</button><button type="button" class="paper-topic" data-topic="differential-privacy" aria-pressed="false" aria-label="Filter papers by Differential privacy">Differential privacy</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2202.05420" target="_blank">A Characterization of Semi-Supervised Adversarially-Robust PAC Learnability</a></div>
+            <div class="pub-entry" data-topics="learning-theory online-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2307.03848" target="_blank" rel="noopener noreferrer">Optimal Learners for Realizable Regression: PAC Learning and Online Learning</a></div>
+                <div class="pub-authors">Idan Attias, Steve Hanneke, Alkis Kalavasis, Amin Karbasi, Grigoris Velegkas</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">37th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2023/hash/8c22e5e918198702765ecff4b20d0a90-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">NeurIPS 2023</a>)</div>
+                    <span class="pub-award">Oral Presentation</span>
+                </div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2307.03848" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1b8IBhNGtxaPaPQsZXeOp9satFvyHuyiX/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Slides</a>
+                </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button></div>
+            </div>
+
+            <div class="pub-entry" data-topics="online-learning game-theory algorithms">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2307.01689" target="_blank" rel="noopener noreferrer">Online Learning and Solving Infinite Games with an ERM Oracle</a></div>
+                <div class="pub-authors">Angelos Assos, Idan Attias, Yuval Dagan, Constantinos Daskalakis, Maxwell Fishelson</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">36th Annual Conference on Learning Theory (<a href="https://proceedings.mlr.press/v195/assos23a.html" target="_blank" rel="noopener noreferrer">COLT 2023</a>)</div>
+                </div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2307.01689" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1vgH3VBKtL65Eeojsi4Kq1vIsptCPbF2Y/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Slides</a>
+                </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="game-theory" aria-pressed="false" aria-label="Filter papers by Game theory">Game theory</button><button type="button" class="paper-topic" data-topic="algorithms" aria-pressed="false" aria-label="Filter papers by Algorithms">Algorithms</button></div>
+            </div>
+
+            <div class="pub-entry" data-topics="learning-theory robust-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2206.12977" target="_blank" rel="noopener noreferrer">Adversarially Robust PAC Learnability of Real-Valued Functions</a></div>
+                <div class="pub-authors">Idan Attias, Steve Hanneke</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">40th International Conference on Machine Learning (<a href="https://proceedings.mlr.press/v202/attias23a.html" target="_blank" rel="noopener noreferrer">ICML 2023</a>)</div>
+                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2206.12977" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="robust-learning" aria-pressed="false" aria-label="Filter papers by Robust learning">Robust learning</button></div>
+            </div>
+
+            <div class="pub-entry" data-topics="game-theory learning-theory online-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2202.06143" target="_blank" rel="noopener noreferrer">Learning Revenue Maximization using Posted Prices for Stochastic Strategic Patient Buyers</a></div>
+                <div class="pub-authors">Eitan-Hai Mashiah, Idan Attias, Yishay Mansour</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">37th Conference on Artificial Intelligence (<a href="https://ojs.aaai.org/index.php/AAAI/article/view/26091" target="_blank" rel="noopener noreferrer">AAAI 2023</a>)</div>
+                    <span class="pub-award">Oral Presentation</span>
+                </div>
+                <div class="pub-links">
+                    <a href="https://arxiv.org/abs/2202.06143" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1UkYkESoQGUWjUNV8ByqwN9eUR0gm3lQI/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Slides</a>
+                </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="game-theory" aria-pressed="false" aria-label="Filter papers by Game theory">Game theory</button><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button></div>
+            </div>
+
+            <div class="pub-entry" data-topics="learning-theory robust-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2202.05420" target="_blank" rel="noopener noreferrer">A Characterization of Semi-Supervised Adversarially-Robust PAC Learnability</a></div>
                 <div class="pub-authors">Idan Attias, Steve Hanneke, Yishay Mansour</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">36th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2022/hash/95a704bd2fdf8ef8242b4adcc7ce3c93-Abstract-Conference.html" target="_blank">NeurIPS 2022</a>)</div>
+                    <div class="pub-venue">36th Annual Conference on Neural Information Processing Systems (<a href="https://papers.nips.cc/paper_files/paper/2022/hash/95a704bd2fdf8ef8242b4adcc7ce3c93-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">NeurIPS 2022</a>)</div>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2202.05420" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1NUwM1zUP8TTCYFRyOM4bBixI0bATjVwd/view?usp=drive_link" target="_blank">Slides</a>
+                    <a href="https://arxiv.org/abs/2202.05420" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1NUwM1zUP8TTCYFRyOM4bBixI0bATjVwd/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Slides</a>
                 </div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="robust-learning" aria-pressed="false" aria-label="Filter papers by Robust learning">Robust learning</button></div>
             </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2002.10286" target="_blank">Prediction with Corrupted Expert Advice</a></div>
+            <div class="pub-entry" data-topics="learning-theory robust-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.02180" target="_blank" rel="noopener noreferrer">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
+                <div class="pub-authors">Idan Attias, Aryeh Kontorovich, Yishay Mansour</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 23 (<a href="https://www.jmlr.org/papers/v23/20-1353.html" target="_blank" rel="noopener noreferrer">JMLR 2022</a>)<span class="pub-preliminary">Preliminary version: 30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank" rel="noopener noreferrer">ALT 2019</a>)</span></div>
+                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="learning-theory" aria-pressed="false" aria-label="Filter papers by Learning theory">Learning theory</button><button type="button" class="paper-topic" data-topic="robust-learning" aria-pressed="false" aria-label="Filter papers by Robust learning">Robust learning</button></div>
+            </div>
+
+            <div class="pub-entry" data-topics="robust-learning deep-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2104.00322" target="_blank" rel="noopener noreferrer">Domain Invariant Adversarial Learning</a></div>
+                <div class="pub-authors">Matan Levi, Idan Attias, Aryeh Kontorovich</div>
+                <div class="pub-meta-row">
+                    <div class="pub-venue">Transactions on Machine Learning Research (<a href="https://openreview.net/forum?id=bUAdXW8wN6" target="_blank" rel="noopener noreferrer">TMLR 2022</a>)</div>
+                </div>
+                <div class="pub-links"><a href="https://arxiv.org/abs/2104.00322" target="_blank" rel="noopener noreferrer">Arxiv</a></div>
+
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="robust-learning" aria-pressed="false" aria-label="Filter papers by Robust learning">Robust learning</button><button type="button" class="paper-topic" data-topic="deep-learning" aria-pressed="false" aria-label="Filter papers by Deep learning">Deep learning</button></div>
+            </div>
+
+            <div class="pub-entry" data-topics="online-learning robust-learning">
+                <div class="pub-title"><a href="https://arxiv.org/pdf/2002.10286" target="_blank" rel="noopener noreferrer">Prediction with Corrupted Expert Advice</a></div>
                 <div class="pub-authors">Idan Amir, Idan Attias, Tomer Koren, Roi Livni, Yishay Mansour</div>
                 <div class="pub-meta-row">
-                    <div class="pub-venue">34th Annual Conference on Neural Information Processing Systems (<a href="https://proceedings.neurips.cc/paper/2020/hash/a512294422de868f8474d22344636f16-Abstract.html" target="_blank">NeurIPS 2020</a>)</div>
+                    <div class="pub-venue">34th Annual Conference on Neural Information Processing Systems (<a href="https://proceedings.neurips.cc/paper/2020/hash/a512294422de868f8474d22344636f16-Abstract.html" target="_blank" rel="noopener noreferrer">NeurIPS 2020</a>)</div>
                     <span class="pub-award">Spotlight</span>
                 </div>
                 <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2002.10286" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1PwP9r1uh2jh0RCk9dFaDtq6TI5LGt_-c/view?usp=drive_link" target="_blank">Slides</a>
+                    <a href="https://arxiv.org/abs/2002.10286" target="_blank" rel="noopener noreferrer">Arxiv</a> •
+                    <a href="https://drive.google.com/file/d/1PwP9r1uh2jh0RCk9dFaDtq6TI5LGt_-c/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Slides</a>
                 </div>
-            </div>
 
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.02180" target="_blank">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
-                <div class="pub-authors">Idan Attias, Aryeh Kontorovich, Yishay Mansour</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">30th International Conference on Algorithmic Learning Theory (<a href="https://proceedings.mlr.press/v98/attias19a.html" target="_blank">ALT 2019</a>)</div>
-                </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Arxiv</a></div>
+                <div class="paper-topics" role="group" aria-label="Research topics"><button type="button" class="paper-topic" data-topic="online-learning" aria-pressed="false" aria-label="Filter papers by Online learning">Online learning</button><button type="button" class="paper-topic" data-topic="robust-learning" aria-pressed="false" aria-label="Filter papers by Robust learning">Robust learning</button></div>
             </div>
-
-            <div class="pub-type" id="journals">Journal Publications</div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2110.04763" target="_blank">Fat-shattering dimension of k-fold Aggregations</a></div>
-                <div class="pub-authors">Idan Attias, Aryeh Kontorovich</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 25 (<a href="https://jmlr.org/papers/v25/21-1193.html" target="_blank">JMLR 2024</a>)</div>
-                </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2110.04763" target="_blank">Arxiv</a></div>
             </div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2107.14527" target="_blank">A Framework for Adversarial Streaming via Differential Privacy and Difference Estimators</a></div>
-                <div class="pub-authors">Idan Attias, Edith Cohen, Moshe Shechner, Uri Stemmer</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue"><a href="https://link.springer.com/article/10.1007/s00453-024-01259-8" target="_blank">Algorithmica 2024</a><br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: ITCS 2023</span></div>
-                </div>
-                <div class="pub-links">
-                    <a href="https://arxiv.org/abs/2107.14527" target="_blank">Arxiv</a> • 
-                    <a href="https://drive.google.com/file/d/1sk-VIIhrleylk52hzsrFUWkIO4BuSSFo/view?usp=drive_link" target="_blank">Slides</a> • 
-                    <a href="https://youtu.be/l8botDXqD_M?si=DLLbkKRX3YFhHeoj" target="_blank">Video (Moshe)</a>
-                </div>
-            </div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/1810.02180" target="_blank">Improved Generalization Bounds for Adversarially Robust Learning</a></div>
-                <div class="pub-authors">Idan Attias, Aryeh Kontorovich, Yishay Mansour</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">Journal of Machine Learning Research, Vol. 23 (<a href="https://www.jmlr.org/papers/v23/20-1353.html" target="_blank">JMLR 2022</a>)<br><span style="font-size:0.85rem; color:var(--text-muted);">Preliminary version: ALT 2019</span></div>
-                </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/1810.02180" target="_blank">Arxiv</a></div>
-            </div>
-
-            <div class="pub-entry">
-                <div class="pub-title"><a href="https://arxiv.org/pdf/2104.00322" target="_blank">Domain Invariant Adversarial Learning</a></div>
-                <div class="pub-authors">Matan Levi, Idan Attias, Aryeh Kontorovich</div>
-                <div class="pub-meta-row">
-                    <div class="pub-venue">Transactions on Machine Learning Research (<a href="https://openreview.net/forum?id=bUAdXW8wN6" target="_blank">TMLR 2022</a>)</div>
-                </div>
-                <div class="pub-links"><a href="https://arxiv.org/abs/2104.00322" target="_blank">Arxiv</a></div>
-            </div>
-        </section>
+</section>
 
 
         <section id="mentoring">
@@ -912,7 +1073,7 @@
             </p> -->
 
              <div class="pub-entry">
-                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://marko-medvedev.github.io/" target="_blank">Marko Medvedev
+                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://marko-medvedev.github.io/" target="_blank" rel="noopener noreferrer">Marko Medvedev
 				</a></div>
                 <div class="pub-authors" style="font-size: 0.95rem; color: var(--text-muted);">
                     University of Chicago, PhD Student <br>
@@ -925,7 +1086,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://alex-rbch.github.io/" target="_blank">Alexander Ryabchenko</a></div>
+                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://alex-rbch.github.io/" target="_blank" rel="noopener noreferrer">Alexander Ryabchenko</a></div>
                 <div class="pub-authors" style="font-size: 0.95rem; color: var(--text-muted);">
                     University of Toronto, PhD Student <br>
                     <span style="font-style: italic;">Sequential decision-making and online algorithms</span>
@@ -938,7 +1099,7 @@
 
 
             <div class="pub-entry">
-                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://arvindr9.github.io/about/" target="_blank">Arvind Ramaswami</a></div>
+                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://arvindr9.github.io/about/" target="_blank" rel="noopener noreferrer">Arvind Ramaswami</a></div>
                 <div class="pub-authors" style="font-size: 0.95rem; color: var(--text-muted);">
                     Purdue University, PhD Student <br>
                     <span style="font-style: italic;">Machine learning theory, Oracle-efficient online learning</span>
@@ -946,7 +1107,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://www.linkedin.com/in/ziyi-liu-ab2b14191/" target="_blank">Ziyi Liu</a></div>
+                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://www.linkedin.com/in/ziyi-liu-ab2b14191/" target="_blank" rel="noopener noreferrer">Ziyi Liu</a></div>
                 <div class="pub-authors" style="font-size: 0.95rem; color: var(--text-muted);">
                     University of Toronto, PhD Student <br>
                     <span style="font-style: italic;">Sequential decision-making, beyond the worst-case algorithms</span>
@@ -954,7 +1115,7 @@
             </div>
 
             <div class="pub-entry">
-                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://www.linkedin.com/in/eitanhaimashiah/" target="_blank">Eitan-Hai Mashiah</a></div>
+                <div class="pub-title" style="color: var(--text-main); font-weight: 600;"><a href="https://www.linkedin.com/in/eitanhaimashiah/" target="_blank" rel="noopener noreferrer">Eitan-Hai Mashiah</a></div>
                 <div class="pub-authors" style="font-size: 0.95rem; color: var(--text-muted);">
                     Tel Aviv University, MSc Student <br>
                     <span style="font-style: italic;">Revenue Maximization and Learning</span>
@@ -1010,6 +1171,8 @@
             </div>
         </section> -->
 
+        </section>
+
         <section id="contact">
             <h2>Contact</h2>
             <div class="contact-row" style="margin-top:1.5rem;">
@@ -1031,7 +1194,8 @@
         const toggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
 
-        const savedTheme = localStorage.getItem('theme');
+        let savedTheme;
+        try { savedTheme = localStorage.getItem('theme'); } catch (_) {}
         
         if (savedTheme === 'light') {
             document.body.classList.remove('dark-mode');
@@ -1046,12 +1210,104 @@
             
             if (document.body.classList.contains('dark-mode')) {
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'dark');
+                try { localStorage.setItem('theme', 'dark'); } catch (_) {}
             } else {
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'light');
+                try { localStorage.setItem('theme', 'light'); } catch (_) {}
             }
         });
+    </script>
+    <script>
+(() => {
+  'use strict';
+  const root = document.getElementById('publications');
+  const panel = document.getElementById('topic-panel');
+  const entries = [...root.querySelectorAll('.pub-entry[data-topics]')];
+  const groups = [...root.querySelectorAll('.publication-group')];
+  const chips = [...panel.querySelectorAll('.topic-chip[data-topic]')];
+  const tags = [...root.querySelectorAll('.paper-topic')];
+  const validTopics = new Set(chips.map(button => button.dataset.topic));
+  const all = document.getElementById('all-topics');
+  const match = document.getElementById('topic-match');
+  const selected = new Set();
+  const topicsOf = entry => entry.dataset.topics.split(' ');
+
+  function readURL() {
+    const params = new URLSearchParams(location.search);
+    selected.clear();
+    (params.get('topics') || '').split(',').forEach(topic => {
+      if (validTopics.has(topic)) selected.add(topic);
+    });
+    match.value = params.get('match') === 'all' ? 'all' : 'any';
+  }
+
+  function update(saveURL = true) {
+    let shown = 0;
+    for (const entry of entries) {
+      const topics = topicsOf(entry);
+      const keep = !selected.size || (match.value === 'all'
+        ? [...selected].every(topic => topics.includes(topic))
+        : [...selected].some(topic => topics.includes(topic)));
+      entry.hidden = !keep;
+      if (keep) shown++;
+    }
+    for (const group of groups) {
+      group.hidden = ![...group.querySelectorAll('.pub-entry')].some(entry => !entry.hidden);
+      const link = root.querySelector(`.pub-filter-link[href="#${group.dataset.group}"]`);
+      if (link) link.hidden = group.hidden;
+    }
+    root.querySelector('.sticky-pub-nav').hidden = shown === 0;
+    for (const button of [...chips, ...tags]) {
+      button.setAttribute('aria-pressed', String(selected.has(button.dataset.topic)));
+    }
+    all.setAttribute('aria-pressed', String(selected.size === 0));
+    document.getElementById('topic-result-count').textContent = selected.size
+      ? `${shown} of ${entries.length} papers`
+      : `All ${entries.length} papers`;
+    document.getElementById('topic-empty').hidden = shown > 0;
+    document.getElementById('match-control').hidden = selected.size < 2;
+    if (saveURL) {
+      const url = new URL(location.href);
+      if (selected.size) {
+        url.searchParams.set('topics', [...selected].join(','));
+        if (match.value === 'all') url.searchParams.set('match', 'all');
+        else url.searchParams.delete('match');
+      } else {
+        url.searchParams.delete('topics');
+        url.searchParams.delete('match');
+      }
+      try { history.replaceState(null, '', url); } catch (_) { /* Filtering also works in downloaded files. */ }
+    }
+  }
+
+  for (const button of chips) {
+    button.addEventListener('click', () => {
+      const topic = button.dataset.topic;
+      selected.has(topic) ? selected.delete(topic) : selected.add(topic);
+      update();
+    });
+  }
+  for (const button of tags) {
+    button.addEventListener('click', () => {
+      selected.clear();
+      selected.add(button.dataset.topic);
+      match.value = 'any';
+      update();
+      chips.find(chip => chip.dataset.topic === button.dataset.topic).focus({preventScroll: true});
+      panel.scrollIntoView({block: 'start', behavior: 'instant'});
+    });
+  }
+  function reset() { selected.clear(); match.value = 'any'; update(); }
+  all.addEventListener('click', reset);
+  document.getElementById('empty-reset').addEventListener('click', () => {
+    reset();
+    all.focus({preventScroll: true});
+  });
+  match.addEventListener('change', () => update());
+  window.addEventListener('popstate', () => { readURL(); update(false); });
+  readURL();
+  update(false);
+})();
     </script>
 </body>
 </html>
