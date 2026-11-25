@@ -484,8 +484,49 @@ button:focus-visible, a:focus-visible, select:focus-visible {
   gap: .6rem 1rem;
 }
 .topic-panel h3 { font-size: 1rem; font-weight: 650; }
+.topic-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  min-height: 44px;
+  padding: .25rem 0;
+  border: 0;
+  background: none;
+  color: var(--text-main);
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.topic-toggle:hover { color: var(--accent); }
+.topic-chevron {
+  width: .55rem;
+  height: .55rem;
+  flex-shrink: 0;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform .15s ease;
+}
+.topic-toggle[aria-expanded="true"] .topic-chevron { transform: rotate(45deg); }
+.topic-toggle-hint { color: var(--text-muted); font-size: .8rem; font-weight: 400; }
+.topic-panel-status { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; }
+.topic-panel-status .topic-reset { min-height: 36px; font-size: .875rem; }
 .topic-result-count { font-size: .875rem; color: var(--text-muted); }
-.topic-options { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; }
+.topic-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: .5rem;
+  max-height: min(12rem, 40vh);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) var(--light-bg);
+  scrollbar-gutter: stable;
+  margin: .75rem 0 0;
+  padding: .5rem;
+  border-top: 1px solid var(--border);
+}
 .topic-chip, .paper-topic {
   color: var(--text-muted);
   background: var(--content-bg);
@@ -664,9 +705,19 @@ body.dark-mode .topic-chip[aria-pressed="true"] { color: #101820; }
 
             <div class="topic-panel" id="topic-panel" aria-labelledby="topic-panel-title">
                 <div class="topic-panel-header">
-                    <h3 id="topic-panel-title">Filter by topic</h3>
-                    <span class="topic-result-count" id="topic-result-count" role="status" aria-live="polite">All 29 papers</span>
+                    <h3 id="topic-panel-title">
+                        <button type="button" class="topic-toggle" id="topic-toggle" aria-expanded="true" aria-controls="topic-controls">
+                            <span class="topic-chevron" aria-hidden="true"></span>
+                            <span>Filter by topic</span>
+                            <span class="topic-toggle-hint" id="topic-toggle-hint" aria-hidden="true">Hide</span>
+                        </button>
+                    </h3>
+                    <div class="topic-panel-status">
+                        <span class="topic-result-count" id="topic-result-count" role="status" aria-live="polite">All 29 papers</span>
+                        <button type="button" class="topic-reset" id="topic-clear" hidden>Clear filters</button>
+                    </div>
                 </div>
+                <div id="topic-controls">
                 <div class="topic-options" role="group" aria-label="Filter publications by research topic">
                     <button type="button" class="topic-chip" id="all-topics" aria-pressed="true">All papers</button>
                     <button type="button" class="topic-chip" data-topic="learning-theory" aria-pressed="false">Learning theory<span class="topic-total" aria-hidden="true">17</span></button>
@@ -690,6 +741,7 @@ body.dark-mode .topic-chip[aria-pressed="true"] { color: #101820; }
                             <option value="all">All selected topics</option>
                         </select></span>
                     </label>
+                </div>
             </div>
             <div class="topic-empty" id="topic-empty" hidden>
                 <p>No papers match this combination of topics.</p>
@@ -1223,6 +1275,16 @@ body.dark-mode .topic-chip[aria-pressed="true"] { color: #101820; }
   'use strict';
   const root = document.getElementById('publications');
   const panel = document.getElementById('topic-panel');
+  const topicToggle = document.getElementById('topic-toggle');
+  const topicControls = document.getElementById('topic-controls');
+  const clearFilters = document.getElementById('topic-clear');
+
+  function setExpanded(expanded) {
+    topicToggle.setAttribute('aria-expanded', String(expanded));
+    topicControls.hidden = !expanded;
+    document.getElementById('topic-toggle-hint').textContent = expanded ? 'Hide' : 'Show';
+  }
+  topicToggle.addEventListener('click', () => setExpanded(topicControls.hidden));
   const entries = [...root.querySelectorAll('.pub-entry[data-topics]')];
   const groups = [...root.querySelectorAll('.publication-group')];
   const chips = [...panel.querySelectorAll('.topic-chip[data-topic]')];
@@ -1262,6 +1324,7 @@ body.dark-mode .topic-chip[aria-pressed="true"] { color: #101820; }
       button.setAttribute('aria-pressed', String(selected.has(button.dataset.topic)));
     }
     all.setAttribute('aria-pressed', String(selected.size === 0));
+    clearFilters.hidden = selected.size === 0;
     document.getElementById('topic-result-count').textContent = selected.size
       ? `${shown} of ${entries.length} papers`
       : `All ${entries.length} papers`;
@@ -1294,15 +1357,22 @@ body.dark-mode .topic-chip[aria-pressed="true"] { color: #101820; }
       selected.add(button.dataset.topic);
       match.value = 'any';
       update();
-      chips.find(chip => chip.dataset.topic === button.dataset.topic).focus({preventScroll: true});
+      setExpanded(true);
       panel.scrollIntoView({block: 'start', behavior: 'instant'});
+      const chip = chips.find(chip => chip.dataset.topic === button.dataset.topic);
+      chip.focus({preventScroll: true});
+      chip.scrollIntoView({block: 'nearest', behavior: 'instant'});
     });
   }
   function reset() { selected.clear(); match.value = 'any'; update(); }
   all.addEventListener('click', reset);
+  clearFilters.addEventListener('click', () => {
+    reset();
+    topicToggle.focus({preventScroll: true});
+  });
   document.getElementById('empty-reset').addEventListener('click', () => {
     reset();
-    all.focus({preventScroll: true});
+    (topicControls.hidden ? topicToggle : all).focus({preventScroll: true});
   });
   match.addEventListener('change', () => update());
   window.addEventListener('popstate', () => { readURL(); update(false); });
